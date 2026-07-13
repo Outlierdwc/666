@@ -25,10 +25,6 @@ if type(gethui) == "function" then
 end
 
 
-local API_BASE = "https://getjx.onrender.com"
-local expirationHours = nil
-local keyless = false
-local VERIFY_PATH = "/api/jx/keys/verify"
 local PUBLIC_CONFIG_PATH = "/api/jx/public/config"
 local WEBHOOK_PROXY_URL = "https://jx3e.onrender.com/webhook/discord"
 local AUTH_TOKEN_URL = "https://jx3e.onrender.com/auth/token"
