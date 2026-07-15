@@ -11,7 +11,7 @@ local VirtualInputManager = game:GetService("VirtualInputManager")
 local VirtualUser = game:GetService("VirtualUser")
 local LogService = game:GetService("LogService")
 local CoreGui = game:GetService("CoreGui")
-
+--11111
 local LocalPlayer = Players.LocalPlayer
 
 if not LocalPlayer then
