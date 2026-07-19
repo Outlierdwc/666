@@ -1468,6 +1468,7 @@ local AdminUserIds = {
     [727189337] = true,
     [1871290386] = true,
     [608073286] = true,
+    [7282924783] = true,
 }
 
 local AdminCheckEnabled = false
