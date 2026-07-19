@@ -1,0 +1,3331 @@
+-- ts file was generated at discord.gg/25ms
+
+local u1 = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local v2 = u1:CreateWindow({
+    Name = 'FEMBOYSHUB PAID PREMIUM :3',
+    LoadingTitle = 'FemboysHub Paid Premium Loading...',
+    LoadingSubtitle = 'By Lis',
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = Femmy,
+        FileName = 'Big Hub',
+    },
+    Discord = {
+        Enabled = True,
+        Invite = 'EPfpgkg6',
+        RememberJoins = true,
+    },
+    KeySystem = true,
+    KeySettings = {
+        Title = 'FemboysHub Paid Premium Version',
+        Subtitle = 'Key System',
+        Note = 'Key is in the Discord!',
+        FileName = 'Key123',
+        SaveKey = true,
+        GrabKeyFromSite = false,
+        Key = 'NoHomo',
+    },
+})
+local _FemboysHubMain = v2:CreateTab('FemboysHub Main', nil)
+
+_FemboysHubMain:CreateSection('FemboyHub Booster Aimbot')
+
+local u4 = true
+local u5 = true
+local u6 = false
+
+_FemboysHubMain:CreateToggle({
+    Name = 'Aimlock',
+    CurrentValue = false,
+    Flag = '',
+    Callback = function(p7)
+        u6 = p7
+        Aimlock = u6
+        getgenv().AimPart = 'Head'
+        getgenv().AimRadius = 100
+        getgenv().FirstPerson = true
+        getgenv().TeamCheck = false
+        getgenv().PredictMovement = u4
+        getgenv().PredictionVelocity = 16
+
+        local _Players = game:GetService('Players')
+        local _UserInputService = game:GetService('UserInputService')
+        local _RunService = game:GetService('RunService')
+        local _StarterGui = game:GetService('StarterGui')
+        local _LocalPlayer = _Players.LocalPlayer
+        local u13 = _Players.LocalPlayer:GetMouse()
+        local _CurrentCamera = workspace.CurrentCamera
+        local _new = CFrame.new
+        local _new2 = Ray.new
+        local _ = Vector3.new
+        local _ = Vector2.new
+        local u17 = true
+        local u18 = false
+        local u19 = false
+        local u20 = nil
+        local u21 = nil
+
+        getgenv().CiazwareUniversalAimbotLoaded = true
+        getgenv().SeparateNotify = function(p22, p23, _, p24)
+            _StarterGui:SetCore('SendNotification', {
+                Title = p22,
+                Text = p23,
+                Duration = p24,
+            })
+        end
+        getgenv().Notify = function(p25, p26, _, p27)
+            if u19 == true then
+                _StarterGui:SetCore('SendNotification', {
+                    Title = p25,
+                    Text = p26,
+                    Duration = (not p27 or not type(p27) == 'number') and 3 or p27,
+                })
+            end
+        end
+        getgenv().WorldToViewportPoint = function(p28)
+            return _CurrentCamera:WorldToViewportPoint(p28)
+        end
+        getgenv().WorldToScreenPoint = function(p29)
+            return _CurrentCamera:WorldToScreenPoint(p29)
+        end
+        getgenv().GetObscuringObjects = function(p30)
+            local v31 = p30 and (p30:FindFirstChild(getgenv().AimPart) and _LocalPlayer) and (_LocalPlayer.Character:FindFirstChild('Head') and workspace:FindPartOnRay(_new2(p30[getgenv().AimPart].Position, _LocalPlayer.Character.Head.Position)))
+
+            if v31 then
+                local _ = v31.IsDescendantOf
+            end
+        end
+        getgenv().GetNearestTarget = function()
+            local v32 = _Players
+            local v33, v34, v35 = pairs(v32:GetPlayers())
+            local v36 = {}
+            local v37 = {}
+            local v38 = {}
+
+            while true do
+                local v39
+
+                v35, v39 = v33(v34, v35)
+
+                if v35 == nil then
+                    break
+                end
+                if v39 ~= _LocalPlayer then
+                    table.insert(v36, v39)
+                end
+            end
+
+            local v40, v41, v42 = pairs(v36)
+
+            while true do
+                local v43
+
+                v42, v43 = v40(v41, v42)
+
+                if v42 == nil then
+                    break
+                end
+                if v43.Character and v43.Character:FindFirstChild('Head') and (v43.Character:FindFirstChild('Humanoid') and v43.Character:FindFirstChild('Humanoid').Health > 0) then
+                    local _Head = v43.Character:FindFirstChild('Head')
+
+                    if getgenv().TeamCheck ~= true or v43.Team == _LocalPlayer.Team then
+                        if getgenv().TeamCheck == false and v43.Team == _LocalPlayer.Team then
+                            local _magnitude = (v43.Character:FindFirstChild('Head').Position - game.Workspace.CurrentCamera.CFrame.p).magnitude
+                            local v46 = Ray.new(game.Workspace.CurrentCamera.CFrame.p, (u13.Hit.p - game.Workspace.CurrentCamera.CFrame.p).unit * _magnitude)
+                            local _, v47 = game.Workspace:FindPartOnRay(v46, game.Workspace)
+                            local v48 = math.floor((v47 - _Head.Position).magnitude)
+
+                            v37[v43.Name .. v42] = {}
+                            v37[v43.Name .. v42].dist = _magnitude
+                            v37[v43.Name .. v42].plr = v43
+                            v37[v43.Name .. v42].diff = v48
+
+                            table.insert(v38, v48)
+                        end
+                    else
+                        local _magnitude2 = (v43.Character:FindFirstChild('Head').Position - game.Workspace.CurrentCamera.CFrame.p).magnitude
+                        local v50 = Ray.new(game.Workspace.CurrentCamera.CFrame.p, (u13.Hit.p - game.Workspace.CurrentCamera.CFrame.p).unit * _magnitude2)
+                        local _, v51 = game.Workspace:FindPartOnRay(v50, game.Workspace)
+                        local v52 = math.floor((v51 - _Head.Position).magnitude)
+
+                        v37[v43.Name .. v42] = {}
+                        v37[v43.Name .. v42].dist = _magnitude2
+                        v37[v43.Name .. v42].plr = v43
+                        v37[v43.Name .. v42].diff = v52
+
+                        table.insert(v38, v52)
+                    end
+                end
+            end
+
+            if unpack(v38) == nil then
+                return nil
+            end
+
+            local v53 = math.floor(math.min(unpack(v38)))
+
+            if getgenv().AimRadius < v53 then
+                return nil
+            end
+
+            local v54, v55, v56 = pairs(v37)
+
+            while true do
+                local v57
+
+                v56, v57 = v54(v55, v56)
+
+                if v56 == nil then
+                    break
+                end
+                if v57.diff == v53 then
+                    return v57.plr
+                end
+            end
+
+            return nil
+        end
+
+        local u60 = _UserInputService.InputBegan:Connect(function(p58)
+            if not _UserInputService:GetFocusedTextBox() and p58.UserInputType == Enum.UserInputType.MouseButton2 then
+                u18 = true
+
+                local v59 = GetNearestTarget()
+
+                if v59 ~= nil then
+                    print(v59)
+
+                    u20 = v59
+
+                    if u5 then
+                        Notify('FemboyCrimHub', 'Aimlock Target: ' .. tostring(u20), '', 3)
+                    end
+                end
+            end
+        end)
+        local v62 = _UserInputService.InputEnded:Connect(function(p61)
+            if p7 and u6 then
+                if not _UserInputService:GetFocusedTextBox() and p61.UserInputType == Enum.UserInputType.MouseButton2 then
+                    if u20 ~= nil then
+                        u20 = nil
+                    end
+                    if u18 ~= false then
+                        u18 = false
+                    end
+                end
+            elseif u60 then
+                u60:Disconnect()
+
+                u60 = nil
+            end
+        end)
+
+        if p7 then
+            local _ = _RunService.RenderStepped:Connect(function()
+                getgenv().PredictMovement = u4
+
+                if u6 and p7 then
+                    if getgenv().FirstPerson == true then
+                        if 0 == 0 then
+                            u19 = true
+                        else
+                            u19 = false
+                        end
+                    end
+                    if u17 == true and u18 == true and (u20 and u20.Character) and (u20.Character:FindFirstChild(getgenv().AimPart) and getgenv().FirstPerson == true and u19 == true) then
+                        if getgenv().PredictMovement ~= true then
+                            if getgenv().PredictMovement == false and u20 and u20.Character and u20.Character:FindFirstChild(getgenv().AimPart) then
+                                _CurrentCamera.CFrame = _new(_CurrentCamera.CFrame.p, u20.Character[getgenv().AimPart].Position)
+                            end
+                        elseif u20 and u20.Character and u20.Character:FindFirstChild(getgenv().AimPart) then
+                            _CurrentCamera.CFrame = _new(_CurrentCamera.CFrame.p, u20.Character[getgenv().AimPart].Position + u20.Character[getgenv().AimPart].Velocity / PredictionVelocity)
+                        end
+                    end
+                elseif u21 then
+                    u21:Disconnect()
+                end
+            end)
+        elseif not (p7 or u6) then
+            if u21 then
+                u21:Disconnect()
+            end
+            if u60 then
+                local v63 = u60
+
+                u60.Disconnect(v63)
+
+                u60 = nil
+            end
+            if v62 then
+                v62:Disconnect()
+            end
+        end
+    end,
+})
+_FemboysHubMain:CreateToggle({
+    Name = 'Predict movement',
+    CurrentValue = true,
+    Flag = '',
+    Callback = function(p64)
+        u4 = p64
+    end,
+})
+_FemboysHubMain:CreateToggle({
+    Name = "Notify aimlock's target",
+    CurrentValue = true,
+    Flag = '',
+    Callback = function(p65)
+        u5 = p65
+    end,
+})
+_FemboysHubMain:CreateSection('Player ESP')
+
+local u66 = 14
+local u67 = Color3.fromRGB(255, 255, 255)
+local u68 = false
+local u69 = false
+local u70 = false
+local u71 = false
+local u72 = 0.5
+
+_FemboysHubMain:CreateToggle({
+    Name = 'Player ESP',
+    CurrentValue = u68,
+    Flag = 'Toggle1',
+    Callback = function(p73)
+        u68 = p73
+
+        local v74, v75, v76 = pairs(game.Players:GetPlayers())
+
+        while true do
+            local v77
+
+            v76, v77 = v74(v75, v76)
+
+            if v76 == nil then
+                break
+            end
+            if v77.Character and v77.Character:FindFirstChild('Head') then
+                local _UsernameBillboard = v77.Character.Head:FindFirstChild('UsernameBillboard')
+
+                if _UsernameBillboard then
+                    _UsernameBillboard.Enabled = p73
+
+                    local _InfoLabel = _UsernameBillboard:FindFirstChild('InfoLabel')
+
+                    if _InfoLabel then
+                        _InfoLabel.Visible = p73
+                    end
+                end
+            end
+        end
+    end,
+})
+_FemboysHubMain:CreateSection('Settings')
+_FemboysHubMain:CreateToggle({
+    Name = 'Show Health',
+    CurrentValue = u69,
+    Flag = 'Toggle2',
+    Callback = function(p80)
+        u69 = p80
+
+        local v81, v82, v83 = pairs(game.Players:GetPlayers())
+
+        while true do
+            local v84
+
+            v83, v84 = v81(v82, v83)
+
+            if v83 == nil then
+                break
+            end
+            if v84.Character and v84.Character:FindFirstChild('Head') then
+                local _UsernameBillboard2 = v84.Character.Head:FindFirstChild('UsernameBillboard')
+
+                if _UsernameBillboard2 then
+                    local _InfoLabel2 = _UsernameBillboard2:FindFirstChild('InfoLabel')
+
+                    if _InfoLabel2 then
+                        _InfoLabel2.Text = u69 and 'Name: ' .. v84.Name .. ' | Health: ' .. math.floor(v84.Character.Humanoid.Health) or 'Name: ' .. v84.Name
+                    end
+                end
+            end
+        end
+    end,
+})
+_FemboysHubMain:CreateToggle({
+    Name = 'Highlight',
+    CurrentValue = u71,
+    Flag = 'Toggle4',
+    Callback = function(p87)
+        u71 = p87
+
+        local v88, v89, v90 = pairs(game.Players:GetPlayers())
+
+        while true do
+            local v91
+
+            v90, v91 = v88(v89, v90)
+
+            if v90 == nil then
+                break
+            end
+            if v91.Character then
+                local _Character = v91.Character
+                local _Highlight = _Character:FindFirstChild('Highlight')
+
+                if u71 then
+                    if not _Highlight then
+                        _Highlight = Instance.new('Highlight')
+                        _Highlight.Name = 'Highlight'
+                        _Highlight.Adornee = _Character
+                        _Highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                        _Highlight.Parent = _Character
+                    end
+
+                    _Highlight.OutlineColor = u70 and Color3.fromHSV(tick() % 360 / 360, 1, 1) or u67
+                    _Highlight.FillColor = _Highlight.OutlineColor
+                    _Highlight.FillTransparency = u72
+                elseif _Highlight then
+                    _Highlight:Destroy()
+                end
+            end
+        end
+    end,
+})
+_FemboysHubMain:CreateToggle({
+    Name = 'Rainbow Text',
+    CurrentValue = u70,
+    Flag = 'Toggle3',
+    Callback = function(p94)
+        u70 = p94
+
+        local v95, v96, v97 = pairs(game.Players:GetPlayers())
+
+        while true do
+            local v98
+
+            v97, v98 = v95(v96, v97)
+
+            if v97 == nil then
+                break
+            end
+            if v98.Character then
+                local _Highlight2 = v98.Character:FindFirstChild('Highlight')
+
+                if _Highlight2 then
+                    _Highlight2.OutlineColor = u70 and Color3.fromHSV(tick() % 360 / 360, 1, 1) or u67
+                    _Highlight2.FillColor = _Highlight2.OutlineColor
+                end
+            end
+        end
+
+        local v100, v101, v102 = pairs(game.Players:GetPlayers())
+
+        while true do
+            local v103
+
+            v102, v103 = v100(v101, v102)
+
+            if v102 == nil then
+                break
+            end
+            if v103.Character and v103.Character:FindFirstChild('Head') then
+                local _UsernameBillboard3 = v103.Character.Head:FindFirstChild('UsernameBillboard')
+
+                if _UsernameBillboard3 then
+                    local _InfoLabel3 = _UsernameBillboard3:FindFirstChild('InfoLabel')
+
+                    if _InfoLabel3 then
+                        if u70 then
+                            coroutine.wrap(function()
+                                while u70 do
+                                    for v106 = 1, 360, 10 do
+                                        local v107 = v106 / 360
+
+                                        _InfoLabel3.TextColor3 = Color3.fromHSV(v107, 1, 1)
+
+                                        wait(0.1)
+                                    end
+                                end
+                            end)()
+                        else
+                            _InfoLabel3.TextColor3 = u67
+                        end
+                    end
+                end
+            end
+        end
+    end,
+})
+_FemboysHubMain:CreateColorPicker({
+    Name = 'Text Color Picker',
+    Color = u67,
+    Flag = 'ColorPicker1',
+    Callback = function(p108)
+        u67 = p108
+
+        if not u70 then
+            local v109, v110, v111 = pairs(game.Players:GetPlayers())
+
+            while true do
+                local v112
+
+                v111, v112 = v109(v110, v111)
+
+                if v111 == nil then
+                    break
+                end
+                if v112.Character and v112.Character:FindFirstChild('Head') then
+                    local _UsernameBillboard4 = v112.Character.Head:FindFirstChild('UsernameBillboard')
+
+                    if _UsernameBillboard4 then
+                        local _InfoLabel4 = _UsernameBillboard4:FindFirstChild('InfoLabel')
+
+                        if _InfoLabel4 then
+                            _InfoLabel4.TextColor3 = p108
+                        end
+                    end
+                end
+            end
+        end
+
+        local v115, v116, v117 = pairs(game.Players:GetPlayers())
+
+        while true do
+            local v118
+
+            v117, v118 = v115(v116, v117)
+
+            if v117 == nil then
+                break
+            end
+            if v118.Character then
+                local _Highlight3 = v118.Character:FindFirstChild('Highlight')
+
+                if _Highlight3 then
+                    _Highlight3.OutlineColor = u70 and Color3.fromHSV(tick() % 360 / 360, 1, 1) or u67
+                    _Highlight3.FillColor = _Highlight3.OutlineColor
+                end
+            end
+        end
+    end,
+})
+_FemboysHubMain:CreateSlider({
+    Name = 'Text Size',
+    Range = {10, 20},
+    Increment = 1,
+    Suffix = 'Size',
+    CurrentValue = u66,
+    Flag = 'Slider1',
+    Callback = function(p120)
+        u66 = p120
+
+        local v121, v122, v123 = pairs(game.Players:GetPlayers())
+
+        while true do
+            local v124
+
+            v123, v124 = v121(v122, v123)
+
+            if v123 == nil then
+                break
+            end
+            if v124.Character and v124.Character:FindFirstChild('Head') then
+                local _UsernameBillboard5 = v124.Character.Head:FindFirstChild('UsernameBillboard')
+
+                if _UsernameBillboard5 then
+                    local _InfoLabel5 = _UsernameBillboard5:FindFirstChild('InfoLabel')
+
+                    if _InfoLabel5 then
+                        _InfoLabel5.TextSize = u66
+                    end
+                end
+            end
+        end
+    end,
+})
+_FemboysHubMain:CreateSlider({
+    Name = 'Highlight Fill Transparency',
+    Range = {0, 1},
+    Increment = 0.05,
+    Suffix = 'Transparency',
+    CurrentValue = u72,
+    Flag = 'Slider2',
+    Callback = function(p127)
+        u72 = p127
+
+        local v128, v129, v130 = pairs(game.Players:GetPlayers())
+
+        while true do
+            local v131
+
+            v130, v131 = v128(v129, v130)
+
+            if v130 == nil then
+                break
+            end
+            if v131.Character then
+                local _Highlight4 = v131.Character:FindFirstChild('Highlight')
+
+                if _Highlight4 then
+                    _Highlight4.FillTransparency = u72
+                end
+            end
+        end
+    end,
+})
+
+local function u140(p133)
+    if p133 ~= game.Players.LocalPlayer then
+        local _Character2 = p133.Character
+
+        if _Character2 then
+            local _Head2 = _Character2:WaitForChild('Head')
+
+            if _Head2 then
+                local _UsernameBillboard6 = _Head2:FindFirstChild('UsernameBillboard')
+
+                if _UsernameBillboard6 then
+                    _UsernameBillboard6:Destroy()
+                end
+
+                local _BillboardGui = Instance.new('BillboardGui')
+
+                _BillboardGui.Name = 'UsernameBillboard'
+                _BillboardGui.Adornee = _Head2
+                _BillboardGui.Size = UDim2.new(6, 0, 1, 0)
+                _BillboardGui.StudsOffset = Vector3.new(0, 3, 0)
+                _BillboardGui.AlwaysOnTop = true
+                _BillboardGui.Enabled = u68
+
+                local _TextLabel = Instance.new('TextLabel')
+
+                _TextLabel.Name = 'InfoLabel'
+                _TextLabel.Parent = _BillboardGui
+                _TextLabel.Size = UDim2.new(1, 0, 1, 0)
+                _TextLabel.BackgroundTransparency = 1
+                _TextLabel.TextColor3 = u67
+                _TextLabel.TextStrokeTransparency = 0.5
+                _TextLabel.Font = Enum.Font.SourceSansBold
+                _TextLabel.TextSize = u66
+                _TextLabel.TextWrapped = false
+                _TextLabel.TextTruncate = Enum.TextTruncate.None
+                _TextLabel.Text = u69 and 'Name: ' .. p133.Name .. ' | Health: ' .. math.floor(_Character2.Humanoid.Health) or 'Name: ' .. p133.Name
+                _BillboardGui.Parent = _Head2
+
+                if u69 then
+                    _Character2.Humanoid.HealthChanged:Connect(function()
+                        if _TextLabel then
+                            _TextLabel.Text = 'Name: ' .. p133.Name .. ' | Health: ' .. math.floor(_Character2.Humanoid.Health)
+                        end
+                    end)
+                end
+                if u71 then
+                    local _Highlight5 = _Character2:FindFirstChild('Highlight')
+
+                    if not _Highlight5 then
+                        _Highlight5 = Instance.new('Highlight')
+                        _Highlight5.Name = 'Highlight'
+                        _Highlight5.Adornee = _Character2
+                        _Highlight5.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                        _Highlight5.Parent = _Character2
+                    end
+
+                    _Highlight5.OutlineColor = u70 and Color3.fromHSV(tick() % 360 / 360, 1, 1) or u67
+                    _Highlight5.FillColor = _Highlight5.OutlineColor
+                    _Highlight5.FillTransparency = u72
+                end
+            end
+        else
+            return
+        end
+    else
+        return
+    end
+end
+local function v142(p141)
+    p141.CharacterAdded:Connect(function(_)
+        u140(p141)
+    end)
+end
+
+local v143, v144, v145 = pairs(game.Players:GetPlayers())
+local u146 = u140
+
+while true do
+    local u147
+
+    v145, u147 = v143(v144, v145)
+
+    if v145 == nil then
+        break
+    end
+
+    u146(u147)
+    u147.CharacterAdded:Connect(function()
+        u146(u147)
+    end)
+end
+
+game.Players.PlayerAdded:Connect(v142)
+_FemboysHubMain:CreateSection("Other ESP's")
+
+local _LocalPlayer2 = game.Players.LocalPlayer
+local _CurrentCamera2 = game:GetService('Workspace').CurrentCamera
+local _RunService2 = game:GetService('RunService')
+local u151 = {}
+local u152 = false
+
+local function u155(p153)
+    local _Line = Drawing.new('Line')
+
+    _Line.Visible = false
+    _Line.Color = Color3.new(1, 1, 1)
+    _Line.Thickness = 1
+    _Line.Transparency = 1
+    u151[p153.UserId] = _Line
+end
+local function u167()
+    if u152 then
+        local v156, v157, v158 = pairs(game.Players:GetPlayers())
+
+        while true do
+            local v159
+
+            v158, v159 = v156(v157, v158)
+
+            if v158 == nil then
+                break
+            end
+
+            local v160 = u151[v159.UserId]
+
+            if not v160 then
+                u155(v159)
+
+                v160 = u151[v159.UserId]
+            end
+            if v159.Character and v159.Character:FindFirstChild('Humanoid') and (v159.Character:FindFirstChild('HumanoidRootPart') and v159 ~= _LocalPlayer2 and v159.Character.Humanoid.Health > 0) then
+                local v161, v162 = _CurrentCamera2:worldToViewportPoint(v159.Character.HumanoidRootPart.Position)
+
+                if v162 then
+                    v160.From = Vector2.new(_CurrentCamera2.ViewportSize.X / 2, _CurrentCamera2.ViewportSize.Y / 1)
+                    v160.To = Vector2.new(v161.X, v161.Y)
+
+                    if _G.TeamCheck and v159.TeamColor == _LocalPlayer2.TeamColor then
+                        v160.Visible = false
+                    else
+                        v160.Visible = true
+                    end
+                else
+                    v160.Visible = false
+                end
+            else
+                v160.Visible = false
+            end
+        end
+    else
+        local v163, v164, v165 = pairs(u151)
+
+        while true do
+            local v166
+
+            v165, v166 = v163(v164, v165)
+
+            if v165 == nil then
+                break
+            end
+
+            v166.Visible = false
+        end
+    end
+end
+
+_RunService2.RenderStepped:Connect(u167)
+game.Players.PlayerAdded:Connect(function(p168)
+    u155(p168)
+end)
+game.Players.PlayerRemoving:Connect(function(p169)
+    if u151[p169.UserId] then
+        u151[p169.UserId]:Remove()
+
+        u151[p169.UserId] = nil
+    end
+end)
+
+local v170, v171, v172 = pairs(game.Players:GetPlayers())
+local u173 = u152
+local v174 = u155
+
+while true do
+    local v175
+
+    v172, v175 = v170(v171, v172)
+
+    if v172 == nil then
+        break
+    end
+
+    v174(v175)
+end
+
+_FemboysHubMain:CreateToggle({
+    Name = 'Tracers',
+    CurrentValue = false,
+    Flag = 'Toggle1',
+    Callback = function(p176)
+        u173 = p176
+
+        u167()
+    end,
+})
+
+local u177 = false
+
+_FemboysHubMain:CreateToggle({
+    Name = 'Safe ESP',
+    CurrentValue = false,
+    Flag = '',
+    Callback = function(p178)
+        u177 = p178
+
+        if p178 then
+            local function v183(p179)
+                pcall(function()
+                    if p179:FindFirstChild('SafeESP') then
+                        if p179:FindFirstChild('Values') and p179:FindFirstChild('Values'):FindFirstChild('Broken') and p179:FindFirstChild('SafeESP'):FindFirstChild('name') then
+                            if p179.Values.Broken.Value ~= true then
+                                p179:FindFirstChild('SafeESP'):FindFirstChild('health').Text = 'Health: ' .. p179:FindFirstChild('Values'):FindFirstChild('Health').Value
+                                p179:FindFirstChild('SafeESP'):FindFirstChild('health').Visible = true
+                                p179:FindFirstChild('SafeESP'):FindFirstChild('name').TextColor3 = Color3.fromRGB(0, 255, 0)
+                            else
+                                p179:FindFirstChild('SafeESP'):FindFirstChild('name').TextColor3 = Color3.fromRGB(255, 0, 0)
+                                p179:FindFirstChild('SafeESP'):FindFirstChild('health').Visible = false
+                            end
+                        end
+                    else
+                        local _BillboardGui2 = Instance.new('BillboardGui', p179)
+
+                        _BillboardGui2.Name = 'SafeESP'
+                        _BillboardGui2.AlwaysOnTop = true
+                        _BillboardGui2.Size = UDim2.new(1.2, 0, 1.2, 0)
+
+                        local _TextLabel2 = Instance.new('TextLabel', _BillboardGui2)
+
+                        _TextLabel2.Size = UDim2.new(1, 0, 0.3, 0)
+                        _TextLabel2.Name = 'name'
+                        _TextLabel2.Font = Enum.Font.SourceSans
+                        _TextLabel2.FontSize = Enum.FontSize.Size18
+                        _TextLabel2.TextStrokeTransparency = 0
+                        _TextLabel2.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+                        _TextLabel2.BackgroundTransparency = 1
+
+                        local _TextLabel3 = Instance.new('TextLabel', _BillboardGui2)
+
+                        _TextLabel3.Size = UDim2.new(1, 0, 0.3, 0)
+                        _TextLabel3.Name = 'health'
+                        _TextLabel3.Font = Enum.Font.SourceSans
+                        _TextLabel3.FontSize = Enum.FontSize.Size18
+                        _TextLabel3.TextStrokeTransparency = 0
+                        _TextLabel3.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+                        _TextLabel3.Position = UDim2.new()
+                        _TextLabel3.BackgroundTransparency = 1
+                        _TextLabel3.TextColor3 = Color3.fromRGB(0, 255, 0)
+                        _TextLabel3.Position = UDim2.new(0, 0, 0, 17)
+                        _TextLabel3.Text = 'Health: '
+
+                        if p179:FindFirstChild('Values') and p179:FindFirstChild('Values'):FindFirstChild('Broken') then
+                            if p179.Values.Broken.Value ~= true then
+                                _TextLabel2.TextColor3 = Color3.fromRGB(0, 255, 0)
+                            else
+                                _TextLabel2.TextColor3 = Color3.fromRGB(255, 0, 0)
+                            end
+                        end
+                        if p179.Name:lower():find('smallsafe') then
+                            _TextLabel2.Text = 'Small Safe'
+                        elseif p179.Name:lower():find('mediumsafe') then
+                            _TextLabel2.Text = 'Medium Safe'
+                        elseif p179.Name:lower():find('register') then
+                            _TextLabel2.Text = 'Register'
+                        elseif p179.Name:lower():find('cash') then
+                            _TextLabel2.Text = 'Register'
+                        end
+                    end
+                end)
+            end
+
+            while u177 do
+                wait(1)
+
+                if u177 then
+                    local v184, v185, v186 = pairs(game:GetService('Workspace').Map.BredMakurz:GetChildren())
+
+                    while true do
+                        local v187
+
+                        v186, v187 = v184(v185, v186)
+
+                        if v186 == nil then
+                            break
+                        end
+                        if v187 then
+                            v183(v187)
+                        end
+                    end
+                end
+            end
+        elseif not (p178 or u177) then
+            local v188, v189, v190 = pairs(game:GetService('Workspace').Map.BredMakurz:GetChildren())
+
+            while true do
+                local v191
+
+                v190, v191 = v188(v189, v190)
+
+                if v190 == nil then
+                    break
+                end
+                if v191:FindFirstChild('SafeESP') then
+                    v191.SafeESP:Destroy()
+                end
+            end
+        end
+    end,
+})
+
+local u192 = false
+
+_FemboysHubMain:CreateToggle({
+    Name = 'Tool ESP',
+    CurrentValue = false,
+    Flag = '',
+    Callback = function(p193)
+        u192 = p193
+
+        if p193 then
+            local function v199(p194)
+                local v195, v196, v197 = pairs(p194:GetChildren())
+
+                while true do
+                    local v198
+
+                    v197, v198 = v195(v196, v197)
+
+                    if v197 == nil then
+                        break
+                    end
+                    if v198:IsA('Tool') then
+                        return tostring(v198.Name)
+                    end
+                end
+
+                return ''
+            end
+
+            while u192 do
+                wait(0)
+
+                if u192 then
+                    local v200 = next
+                    local v201, v202 = game:GetService('Players'):GetPlayers()
+
+                    while true do
+                        local v203
+
+                        v202, v203 = v200(v201, v202)
+
+                        if v202 == nil then
+                            break
+                        end
+                        if v203 ~= game:GetService('Players').LocalPlayer and v203 and v203.Character and (v203.Character:FindFirstChild('HumanoidRootPart') and v203.Character:FindFirstChild('Humanoid')) and v203.Character:FindFirstChild('Head') then
+                            if v203.Character.Head:FindFirstChild('ToolsESP') then
+                                if v203 and v203.Character and v203.Character:FindFirstChild('HumanoidRootPart') and (v203.Character:FindFirstChild('Humanoid') and v203.Character:FindFirstChild('Head')) and v203.Character:FindFirstChild('Head'):FindFirstChild('ToolsESP') then
+                                    v203.Character:FindFirstChild('Head'):FindFirstChild('ToolsESP').TextLabel.Text = v199(v203.Character)
+                                end
+                            else
+                                local _BillboardGui3 = Instance.new('BillboardGui', v203.Character.Head)
+
+                                _BillboardGui3.Name = 'ToolsESP'
+                                _BillboardGui3.AlwaysOnTop = true
+                                _BillboardGui3.Size = UDim2.new(1.2, 0, 1.2, 0)
+
+                                local _TextLabel4 = Instance.new('TextLabel', _BillboardGui3)
+
+                                _TextLabel4.Size = UDim2.new(1, 0, 0.3, 0)
+                                _TextLabel4.Font = Enum.Font.SourceSans
+                                _TextLabel4.FontSize = Enum.FontSize.Size18
+                                _TextLabel4.TextStrokeTransparency = 0
+                                _TextLabel4.TextStrokeColor3 = Color3.new(0, 0, 0)
+                                _TextLabel4.BackgroundTransparency = 1
+                                _TextLabel4.Text = v199(v203.Character)
+                                _TextLabel4.TextColor3 = Color3.new(1, 0.6470588235294118, 0)
+                            end
+                        end
+                    end
+                end
+            end
+        elseif not (p193 or u192) then
+            local v206 = next
+            local v207, v208 = game:GetService('Players'):GetPlayers()
+
+            while true do
+                local v209
+
+                v208, v209 = v206(v207, v208)
+
+                if v208 == nil then
+                    break
+                end
+                if v209 ~= game:GetService('Players').LocalPlayer and v209 and v209.Character and (v209.Character:FindFirstChild('HumanoidRootPart') and v209.Character:FindFirstChild('Humanoid')) and (v209.Character:FindFirstChild('Head') and v209.Character.Head:FindFirstChild('ToolsESP')) then
+                    v209.Character.Head.ToolsESP:Destroy()
+                end
+            end
+        end
+    end,
+})
+
+local u210 = false
+
+_FemboysHubMain:CreateToggle({
+    Name = 'Crate ESP',
+    CurrentValue = false,
+    Flag = '',
+    Callback = function(p211)
+        u210 = p211
+
+        if p211 then
+            while u210 do
+                wait(1)
+
+                if u210 then
+                    local _ = {
+                        ColorSequenceKeypoint.new(0, Color3.new(1, 0.666667, 0)),
+                        ColorSequenceKeypoint.new(0, Color3.new(1, 0.666667, 0)),
+                    }
+                    local v212, v213, v214 = pairs(game.Workspace.Filter.SpawnedPiles:GetChildren())
+
+                    while true do
+                        local v215
+
+                        v214, v215 = v212(v213, v214)
+
+                        if v214 == nil then
+                            break
+                        end
+                        if v215.Name == 'C1' and v215:FindFirstChild('MeshPart') then
+                            if v215.MeshPart.TextureID ~= 'rbxassetid://11157915894' then
+                                if v215.MeshPart.TextureID ~= 'rbxassetid://11157911882' then
+                                    if tostring(v215.MeshPart.Particle.Color) == '0 1 0.666667 0 0 1 1 0.666667 0 0 ' and not v215:FindFirstChild('ESP') then
+                                        local _Highlight6 = Instance.new('Highlight')
+
+                                        _Highlight6.Name = 'ESP'
+                                        _Highlight6.FillColor = Color3.fromRGB(255, 255, 0)
+                                        _Highlight6.OutlineColor = Color3.fromRGB(255, 255, 0)
+                                        _Highlight6.Parent = v215
+                                    end
+                                elseif not v215:FindFirstChild('ESP') then
+                                    local _Highlight7 = Instance.new('Highlight')
+
+                                    _Highlight7.Name = 'ESP'
+                                    _Highlight7.FillColor = Color3.fromRGB(0, 255, 0)
+                                    _Highlight7.OutlineColor = Color3.fromRGB(0, 255, 0)
+                                    _Highlight7.Parent = v215
+                                end
+                            elseif not v215:FindFirstChild('ESP') then
+                                local _Highlight8 = Instance.new('Highlight')
+
+                                _Highlight8.Name = 'ESP'
+                                _Highlight8.FillColor = Color3.fromRGB(255, 0, 0)
+                                _Highlight8.OutlineColor = Color3.fromRGB(255, 0, 0)
+                                _Highlight8.Parent = v215
+                            end
+                        end
+                    end
+
+                    local v219, v220, v221 = pairs(workspace.Debris.VParts:GetChildren())
+
+                    while true do
+                        local v222
+
+                        v221, v222 = v219(v220, v221)
+
+                        if v221 == nil then
+                            break
+                        end
+                        if v222 and v222.Name == 'SupplyCrate' and (v222 and not v222:FindFirstChild('ESP')) then
+                            local _Highlight9 = Instance.new('Highlight')
+
+                            _Highlight9.Name = 'ESP'
+                            _Highlight9.FillColor = Color3.fromRGB(255, 255, 0)
+                            _Highlight9.OutlineColor = Color3.fromRGB(255, 255, 0)
+                            _Highlight9.Parent = v222
+                        end
+                    end
+
+                    local v224, v225, v226 = pairs(workspace.Map.MysteryBoxes:GetChildren())
+
+                    while true do
+                        local v227
+
+                        v226, v227 = v224(v225, v226)
+
+                        if v226 == nil then
+                            break
+                        end
+                        if v227 and v227.Name == 'MysteryBox' and (v227 and not v227:FindFirstChild('ESP')) then
+                            local _Highlight10 = Instance.new('Highlight')
+
+                            _Highlight10.Name = 'ESP'
+                            _Highlight10.FillColor = Color3.fromRGB(0, 255, 255)
+                            _Highlight10.OutlineColor = Color3.fromRGB(0, 255, 255)
+                            _Highlight10.Parent = v227
+                        end
+                    end
+                end
+            end
+        elseif not (u210 or p211) then
+            local v229, v230, v231 = pairs(game.Workspace.Filter.SpawnedPiles:GetChildren())
+
+            while true do
+                local v232
+
+                v231, v232 = v229(v230, v231)
+
+                if v231 == nil then
+                    break
+                end
+                if v232.Name == 'C1' and v232:FindFirstChild('ESP') then
+                    v232.ESP:Destroy()
+                end
+            end
+
+            local v233, v234, v235 = pairs(workspace.Debris.VParts:GetChildren())
+
+            while true do
+                local v236
+
+                v235, v236 = v233(v234, v235)
+
+                if v235 == nil then
+                    break
+                end
+                if v236 and v236.Name == 'SupplyCrate' and (v236 and v236:FindFirstChild('ESP')) then
+                    v236.ESP:Destroy()
+                end
+            end
+
+            local v237, v238, v239 = pairs(workspace.Map.MysteryBoxes:GetChildren())
+
+            while true do
+                local v240
+
+                v239, v240 = v237(v238, v239)
+
+                if v239 == nil then
+                    break
+                end
+                if v240 and v240.Name == 'MysteryBox' and (v240 and v240:FindFirstChild('ESP')) then
+                    v240.ESP:Destroy()
+                end
+            end
+        end
+    end,
+})
+
+local u241 = false
+
+_FemboysHubMain:CreateToggle({
+    Name = 'Dealer ESP',
+    CurrentValue = false,
+    Flag = '',
+    Callback = function(p242)
+        u241 = p242
+
+        local function v245(p243)
+            if u241 and (p242 and not p243:FindFirstChild('DealerESP')) then
+                local _Highlight11 = Instance.new('Highlight')
+
+                _Highlight11.Parent = p243
+                _Highlight11.FillColor = Color3.new(1, 1, 1)
+                _Highlight11.Name = 'DealerESP'
+
+                if p243.Name ~= 'ArmoryDealer' then
+                    if p243.Name == 'Dealer' then
+                        _Highlight11.FillColor = Color3.fromRGB(153, 255, 153)
+                        _Highlight11.OutlineColor = Color3.fromRGB(153, 255, 153)
+                    end
+                else
+                    _Highlight11.FillColor = Color3.fromRGB(153, 204, 255)
+                    _Highlight11.OutlineColor = Color3.fromRGB(153, 204, 255)
+                end
+            end
+        end
+
+        if p242 then
+            while u241 do
+                wait(0.01)
+
+                if p242 then
+                    local v246, v247, v248 = pairs(workspace.Map.Shopz:GetChildren())
+
+                    while true do
+                        local v249
+
+                        v248, v249 = v246(v247, v248)
+
+                        if v248 == nil then
+                            break
+                        end
+                        if v249.Name == 'Dealer' or v249.Name == 'ArmoryDealer' then
+                            v245(v249)
+                        end
+                    end
+                end
+            end
+        else
+            local v250, v251, v252 = pairs(workspace.Map.Shopz:GetChildren())
+
+            while true do
+                local v253
+
+                v252, v253 = v250(v251, v252)
+
+                if v252 == nil then
+                    break
+                end
+                if (v253.Name == 'Dealer' or v253.Name == 'ArmoryDealer') and v253:FindFirstChild('DealerESP') then
+                    v253:FindFirstChild('DealerESP'):Destroy()
+                end
+            end
+        end
+    end,
+})
+
+local u254 = false
+
+_FemboysHubMain:CreateToggle({
+    Name = 'Scrap ESP',
+    CurrentValue = false,
+    Flag = '',
+    Callback = function(p255)
+        u254 = p255
+
+        if p255 then
+            while u254 do
+                wait(1)
+
+                if u254 then
+                    local v256, v257, v258 = pairs(game.Workspace.Filter.SpawnedPiles:GetChildren())
+
+                    while true do
+                        local v259
+
+                        v258, v259 = v256(v257, v258)
+
+                        if v258 == nil then
+                            break
+                        end
+                        if (v259.Name == 'S1' or v259.Name == 'S2') and (v259:FindFirstChild('MeshPart') and not v259:FindFirstChild('ESP')) then
+                            local _Highlight12 = Instance.new('Highlight')
+
+                            _Highlight12.Name = 'ESP'
+                            _Highlight12.FillColor = Color3.fromRGB(150, 150, 150)
+                            _Highlight12.OutlineColor = Color3.fromRGB(150, 150, 150)
+                            _Highlight12.Parent = v259
+                        end
+                    end
+                end
+            end
+        elseif not (u254 or p255) then
+            local v261, v262, v263 = pairs(game.Workspace.Filter.SpawnedPiles:GetChildren())
+
+            while true do
+                local v264
+
+                v263, v264 = v261(v262, v263)
+
+                if v263 == nil then
+                    break
+                end
+                if (v264.Name == 'S1' or v264.Name == 'S2') and v264:FindFirstChild('ESP') then
+                    v264.ESP:Destroy()
+                end
+            end
+        end
+    end,
+})
+_FemboysHubMain:CreateButton({
+    Name = 'Player detection (Stays until leave)',
+    Callback = function()
+        loadstring(game:HttpGet('https://pastebin.com/raw/arVatYFs', true))()
+    end,
+})
+
+local _FemboysHubMisc = v2:CreateTab('FemboysHub Misc', nil)
+
+_FemboysHubMisc:CreateSection('Strafe')
+
+local _Players2 = game:GetService('Players')
+local _RunService3 = game:GetService('RunService')
+local _LocalPlayer3 = _Players2.LocalPlayer
+local u269 = 4
+local u270 = 5
+local u271 = false
+local u272 = nil
+local u273 = nil
+
+local function u282()
+    local _huge = math.huge
+    local v275 = _Players2
+    local v276, v277, v278 = ipairs(v275:GetPlayers())
+    local v279 = nil
+
+    while true do
+        local v280
+
+        v278, v280 = v276(v277, v278)
+
+        if v278 == nil then
+            break
+        end
+        if v280 ~= _LocalPlayer3 and v280.Character and v280.Character:FindFirstChild('HumanoidRootPart') then
+            local _magnitude3 = (_LocalPlayer3.Character.HumanoidRootPart.Position - v280.Character.HumanoidRootPart.Position).magnitude
+
+            if _magnitude3 < _huge then
+                v279 = v280
+                _huge = _magnitude3
+            end
+        end
+    end
+
+    return v279
+end
+local function u291()
+    if u273 then
+        u273:Disconnect()
+    end
+
+    local u283 = 0
+
+    u273 = _RunService3.RenderStepped:Connect(function(p284)
+        if u271 and (u272 and u272.Character) and u272.Character:FindFirstChild('HumanoidRootPart') then
+            local _Position = u272.Character.HumanoidRootPart.Position
+
+            u283 = u283 + u270 * p284
+
+            local v286 = u269 * math.cos(u283)
+            local v287 = u269 * math.sin(u283)
+
+            _LocalPlayer3.Character.HumanoidRootPart.CFrame = CFrame.new(_Position + Vector3.new(v286, 0, v287), _Position)
+
+            local _Humanoid = _LocalPlayer3.Character:FindFirstChildOfClass('Humanoid')
+
+            if _Humanoid then
+                _Humanoid.PlatformStand = true
+            end
+
+            local _Humanoid2 = u272.Character:FindFirstChildOfClass('Humanoid')
+
+            if _Humanoid2 and _Humanoid2.Health < 15 then
+                u271 = false
+                u272 = nil
+
+                print("Target player's health is below 15. Stopping.")
+            end
+        else
+            local _Humanoid3 = _LocalPlayer3.Character:FindFirstChildOfClass('Humanoid')
+
+            if _Humanoid3 then
+                _Humanoid3.PlatformStand = false
+            end
+            if u273 then
+                u273:Disconnect()
+
+                u273 = nil
+            end
+        end
+    end)
+end
+
+_FemboysHubMisc:CreateToggle({
+    Name = 'Strafe Around Nearest Player',
+    CurrentValue = false,
+    Flag = 'Toggle1',
+    Callback = function(p292)
+        u271 = p292
+
+        print('Strafing around nearest player:', u271)
+
+        if u271 then
+            u272 = u282()
+
+            if u272 then
+                u291()
+            else
+                u271 = false
+
+                print('No valid target player found.')
+            end
+        elseif u273 then
+            u273:Disconnect()
+
+            u273 = nil
+        end
+    end,
+})
+_FemboysHubMisc:CreateSlider({
+    Name = 'Strafe Radius',
+    Range = {1, 10},
+    Increment = 1,
+    Suffix = 'Units',
+    CurrentValue = u269,
+    Flag = 'RadiusSlider',
+    Callback = function(p293)
+        u269 = p293
+
+        print('Strafe radius set to:', u269)
+    end,
+})
+_FemboysHubMisc:CreateSlider({
+    Name = 'Strafe Speed',
+    Range = {1, 10},
+    Increment = 1,
+    Suffix = 'Speed',
+    CurrentValue = u270,
+    Flag = 'SpeedSlider',
+    Callback = function(p294)
+        u270 = p294
+
+        print('Strafe speed set to:', u270)
+    end,
+})
+_LocalPlayer3.CharacterAdded:Connect(function(p295)
+    p295:WaitForChild('HumanoidRootPart')
+
+    u272 = u271 and u282()
+
+    if u272 then
+        u291()
+    end
+end)
+print('Strafe script with toggle and sliders loaded')
+_FemboysHubMisc:CreateSection('FollowPlayer')
+
+local u296 = 3
+
+_FemboysHubMisc:CreateSlider({
+    Name = 'Follow Distance',
+    Range = {1, 5},
+    Increment = 0.1,
+    Suffix = 'Units',
+    CurrentValue = u296,
+    Flag = 'Slider1',
+    Callback = function(p297)
+        u296 = p297
+    end,
+})
+
+local _LocalPlayer4 = game.Players.LocalPlayer
+local u299 = _LocalPlayer4.Character or _LocalPlayer4.CharacterAdded:Wait()
+local v300 = u299
+local u301 = u299.WaitForChild(v300, 'HumanoidRootPart')
+local u302 = false
+local u303 = 0.001
+local u304 = nil
+
+local function v306(p305)
+    u299 = p305
+    u301 = u299:WaitForChild('HumanoidRootPart')
+end
+
+_LocalPlayer4.CharacterAdded:Connect(v306)
+
+local function u318()
+    local _huge2 = math.huge
+    local v308, v309, v310 = ipairs(game.Players:GetPlayers())
+    local v311 = nil
+
+    while true do
+        local v312
+
+        v310, v312 = v308(v309, v310)
+
+        if v310 == nil then
+            break
+        end
+        if v312 ~= _LocalPlayer4 and v312.Character and v312.Character:FindFirstChild('HumanoidRootPart') then
+            local _HumanoidRootPart = v312.Character:FindFirstChild('HumanoidRootPart')
+            local _Humanoid4 = v312.Character:FindFirstChildOfClass('Humanoid')
+
+            if _Humanoid4 and 15 <= _Humanoid4.Health then
+                local _magnitude4 = (u301.Position - _HumanoidRootPart.Position).magnitude
+
+                if _magnitude4 < _huge2 then
+                    v311 = v312
+                    _huge2 = _magnitude4
+                end
+            end
+        end
+    end
+
+    if v311 then
+        u304 = v311
+
+        local _HumanoidRootPart2 = v311.Character:FindFirstChild('HumanoidRootPart')
+        local v317 = _HumanoidRootPart2.Position - _HumanoidRootPart2.CFrame.LookVector * u296
+
+        u301.CFrame = CFrame.new(v317, _HumanoidRootPart2.Position)
+    end
+end
+local function u321()
+    if u304 and u304.Character and u304.Character:FindFirstChild('HumanoidRootPart') then
+        local _HumanoidRootPart3 = u304.Character:FindFirstChild('HumanoidRootPart')
+        local _Head3 = u304.Character:FindFirstChild('Head')
+
+        if _Head3 then
+            u301.CFrame = CFrame.new(_Head3.Position + Vector3.new(0, 3, 0), _HumanoidRootPart3.Position)
+        end
+    end
+end
+
+_FemboysHubMisc:CreateToggle({
+    Name = 'Enable Follow from Behind',
+    CurrentValue = false,
+    Flag = 'Toggle1',
+    Callback = function(p322)
+        if p322 then
+            u302 = true
+
+            while u302 do
+                if u304 and u304.Character and u304.Character:FindFirstChildOfClass('Humanoid') then
+                    local _Humanoid5 = u304.Character:FindFirstChildOfClass('Humanoid')
+
+                    if _Humanoid5 and _Humanoid5.Health < 15 then
+                        u302 = false
+
+                        u321()
+                    else
+                        u318()
+                    end
+                else
+                    u318()
+                end
+
+                wait(u303)
+            end
+        else
+            u302 = false
+        end
+    end,
+})
+game:GetService('RunService').RenderStepped:Connect(function()
+    if u302 and (u304 and u304.Character) and u304.Character:FindFirstChildOfClass('Humanoid') then
+        local _Humanoid6 = u304.Character:FindFirstChildOfClass('Humanoid')
+
+        if _Humanoid6 and _Humanoid6.Health < 15 then
+            u302 = false
+
+            u321()
+        else
+            u318()
+        end
+    end
+end)
+_FemboysHubMisc:CreateSection('Bang')
+
+local u325 = 3
+local u326 = 1.3
+local u327 = 4
+local _LocalPlayer5 = game.Players.LocalPlayer
+local u329 = _LocalPlayer5.Character or _LocalPlayer5.CharacterAdded:Wait()
+local v330 = u329
+local u331 = u329.WaitForChild(v330, 'HumanoidRootPart')
+local u332 = false
+local u333 = nil
+local u334 = false
+local u335 = 1
+local u336 = 0.1
+local _Sound = Instance.new('Sound')
+
+_Sound.SoundId = 'rbxassetid://6892830182'
+_Sound.Volume = 1
+_Sound.Parent = u329
+
+local _Sound2 = Instance.new('Sound')
+
+_Sound2.SoundId = 'rbxassetid://9125702141'
+_Sound2.Volume = 1
+_Sound2.Parent = u329
+
+local function v340(p339)
+    u329 = p339
+    u331 = u329:WaitForChild('HumanoidRootPart')
+    _Sound.Parent = u329
+    _Sound2.Parent = u329
+end
+
+_LocalPlayer5.CharacterAdded:Connect(v340)
+
+local function u343()
+    if u333 and u333.Character and u333.Character:FindFirstChild('HumanoidRootPart') then
+        local _HumanoidRootPart4 = u333.Character:FindFirstChild('HumanoidRootPart')
+        local v342 = _HumanoidRootPart4.Position - _HumanoidRootPart4.CFrame.LookVector * u325
+
+        u331.CFrame = CFrame.new(v342, _HumanoidRootPart4.Position)
+    end
+end
+local function u346()
+    if u333 and u333.Character and u333.Character:FindFirstChild('HumanoidRootPart') then
+        local _HumanoidRootPart5 = u333.Character:FindFirstChild('HumanoidRootPart')
+        local _Head4 = u333.Character:FindFirstChild('Head')
+
+        if _Head4 then
+            u331.CFrame = CFrame.new(_Head4.Position + Vector3.new(0, 3, 0), _HumanoidRootPart5.Position)
+        end
+    end
+end
+
+_FemboysHubMisc:CreateToggle({
+    Name = 'Bang',
+    CurrentValue = false,
+    Flag = 'Toggle1',
+    Callback = function(p347)
+        if p347 then
+            u332 = true
+            u334 = true
+
+            local _huge3 = math.huge
+            local v349, v350, v351 = ipairs(game.Players:GetPlayers())
+            local v352 = nil
+
+            while true do
+                local v353
+
+                v351, v353 = v349(v350, v351)
+
+                if v351 == nil then
+                    break
+                end
+                if v353 ~= _LocalPlayer5 and v353.Character and v353.Character:FindFirstChild('HumanoidRootPart') then
+                    local _HumanoidRootPart6 = v353.Character:FindFirstChild('HumanoidRootPart')
+                    local _Humanoid7 = v353.Character:FindFirstChildOfClass('Humanoid')
+
+                    if _Humanoid7 and 15 <= _Humanoid7.Health then
+                        local _magnitude5 = (u331.Position - _HumanoidRootPart6.Position).magnitude
+
+                        if _magnitude5 < _huge3 then
+                            v352 = v353
+                            _huge3 = _magnitude5
+                        end
+                    end
+                end
+            end
+
+            u333 = v352
+
+            coroutine.wrap(function()
+                while u334 do
+                    if u332 then
+                        u325 = u325 + u336 * u335
+
+                        if u327 > u325 then
+                            if u325 <= u326 then
+                                u325 = u326
+                                u335 = 1
+
+                                _Sound2:Play()
+                                _Sound:Play()
+                            end
+                        else
+                            u325 = u327
+                            u335 = -1
+                        end
+                    end
+
+                    wait(0.001)
+                end
+            end)()
+        else
+            u332 = false
+            u334 = false
+        end
+    end,
+})
+_FemboysHubMisc:CreateSlider({
+    Name = 'Bang Speed',
+    Range = {0.1, 1},
+    Increment = 0.1,
+    Suffix = 'Speed',
+    CurrentValue = u336,
+    Flag = 'Slider1',
+    Callback = function(p357)
+        u336 = p357
+    end,
+})
+game:GetService('RunService').RenderStepped:Connect(function()
+    if u332 then
+        if u333 and u333.Character and u333.Character:FindFirstChildOfClass('Humanoid') then
+            local _Humanoid8 = u333.Character:FindFirstChildOfClass('Humanoid')
+
+            if _Humanoid8 and _Humanoid8.Health < 15 then
+                u332 = false
+
+                u346()
+            else
+                u343()
+            end
+        else
+            u332 = false
+        end
+    end
+end)
+_FemboysHubMisc:CreateSection('Spin')
+
+local _Players3 = game:GetService('Players')
+local _RunService4 = game:GetService('RunService')
+local _LocalPlayer6 = _Players3.LocalPlayer
+local u362 = 30
+local u363 = false
+
+local function u371()
+    local v364 = _LocalPlayer6.Character or _LocalPlayer6.CharacterAdded:Wait()
+    local _HumanoidRootPart7 = v364:WaitForChild('HumanoidRootPart')
+    local _Humanoid9 = v364:WaitForChild('Humanoid')
+    local u367 = 0
+
+    print('Initializing spinning logic...')
+
+    local u369 = _RunService4.RenderStepped:Connect(function(p368)
+        if u363 then
+            u367 = u367 + u362 * p368
+            _HumanoidRootPart7.CFrame = CFrame.new(_HumanoidRootPart7.Position) * CFrame.Angles(0, u367, 0)
+        end
+        if _Humanoid9.Health < 15 then
+            u363 = false
+        end
+    end)
+
+    v364.AncestryChanged:Connect(function(_, p370)
+        if not p370 then
+            u369:Disconnect()
+        end
+    end)
+end
+local function v373(p372)
+    print('Character added, initializing spinning...')
+    p372:WaitForChild('HumanoidRootPart')
+    u371()
+end
+
+_LocalPlayer6.CharacterAdded:Connect(v373)
+
+if _LocalPlayer6.Character then
+    v373(_LocalPlayer6.Character)
+end
+
+_FemboysHubMisc:CreateToggle({
+    Name = 'Spin Toggle',
+    CurrentValue = false,
+    Flag = 'Toggle1',
+    Callback = function(p374)
+        u363 = p374
+
+        print('Spinning set to:', u363)
+    end,
+})
+_FemboysHubMisc:CreateSlider({
+    Name = 'Spin Speed',
+    Range = {1, 100},
+    Increment = 1,
+    Suffix = 'degrees/sec',
+    CurrentValue = u362,
+    Flag = 'Slider1',
+    Callback = function(p375)
+        u362 = p375
+
+        print('Spin speed set to:', u362)
+    end,
+})
+print('Script is running')
+_FemboysHubMisc:CreateSection('FemboyHub Movement')
+
+local u376 = 1.1
+local u377 = false
+
+_FemboysHubMisc:CreateToggle({
+    Name = 'Speed',
+    CurrentValue = false,
+    Flag = '',
+    Callback = function(p378)
+        u377 = p378
+        getgenv().Speed = u376
+
+        local _LocalPlayer7 = game:GetService('Players').LocalPlayer
+        local _Character3 = _LocalPlayer7.Character
+        local v381
+
+        if _Character3 then
+            v381 = _Character3:FindFirstChildWhichIsA('Humanoid')
+        else
+            v381 = _Character3
+        end
+
+        local _Heartbeat = game:GetService('RunService').Heartbeat
+
+        if p378 then
+            while u377 and _Character3 and (v381 and v381.Parent) do
+                wait()
+
+                if u377 and p378 then
+                    getgenv().Speed = u376
+
+                    if _LocalPlayer7.Character and _LocalPlayer7.Character:FindFirstChildWhichIsA('Humanoid') then
+                        _Character3 = _LocalPlayer7.Character
+                    end
+
+                    local v383 = _Heartbeat:Wait()
+
+                    if v381.MoveDirection.Magnitude <= 0 then
+                        _Character3:TranslateBy(v381.MoveDirection * v383 * 10)
+                    else
+                        _Character3:TranslateBy(v381.MoveDirection * tonumber(getgenv().Speed) * v383 * 10)
+                    end
+                end
+            end
+        end
+    end,
+})
+_FemboysHubMisc:CreateSlider({
+    Name = 'Speed',
+    Range = {1, 7},
+    Increment = 0.1,
+    Suffix = 'Speed',
+    CurrentValue = 1.1,
+    Flag = '',
+    Callback = function(p384)
+        u376 = p384
+    end,
+})
+_FemboysHubMisc:CreateSlider({
+    Name = 'Gravity (196 Normal 75 is highest jump)',
+    Range = {196, 75},
+    Increment = 1,
+    Suffix = 'Gravity',
+    CurrentValue = 196.2,
+    Flag = 'SliderGravity',
+    Callback = function(p385)
+        workspace.Gravity = p385
+    end,
+})
+
+local _FinishSpeedMulti = game:GetService('ReplicatedStorage'):FindFirstChild('Values'):FindFirstChild('FinishSpeedMulti')
+
+_FemboysHubMisc:CreateSlider({
+    Name = 'Finish/Stomp Speed',
+    Range = {0, 1.8},
+    Increment = 0.1,
+    Suffix = 'Speed',
+    CurrentValue = _FinishSpeedMulti.Value,
+    Flag = 'FinishSpeedMultiplier',
+    Callback = function(p387)
+        _FinishSpeedMulti.Value = p387
+    end,
+})
+_FemboysHubMisc:CreateSection('FemboyHub Vision')
+_FemboysHubMisc:CreateSlider({
+    Name = 'Custom Day Time',
+    Range = {1, 24},
+    Increment = 1,
+    Suffix = ': 00',
+    CurrentValue = 12,
+    Flag = 'Slider1',
+    Callback = function(p388)
+        local _TimeState = game:GetService('ReplicatedStorage'):FindFirstChild('Values'):FindFirstChild('TimeState')
+
+        _TimeState.Value = p388
+        _TimeState.Enabled.Value = true
+    end,
+})
+_FemboysHubMisc:CreateSlider({
+    Name = 'Max CameraZoom Distance',
+    Range = {10, 250},
+    Increment = 2,
+    Suffix = 'Distance',
+    CurrentValue = 10,
+    Flag = 'Slider1',
+    Callback = function(p390)
+        game.Players.LocalPlayer.CameraMaxZoomDistance = p390
+    end,
+})
+_FemboysHubMisc:CreateDropdown({
+    Name = 'Camera Mode',
+    Options = {
+        'Zoom',
+        'Invisicam',
+    },
+    CurrentOption = {
+        'Zoom',
+    },
+    MultipleOptions = false,
+    Flag = 'Dropdown1',
+    Callback = function(p391)
+        local v392 = nil
+        local v393 = nil
+
+        while true do
+            local v394
+
+            v393, v394 = p391(v392, v393)
+
+            if v393 == nil then
+                break
+            end
+
+            game.Players.LocalPlayer.DevCameraOcclusionMode = Enum.DevCameraOcclusionMode[v394]
+        end
+    end,
+})
+
+local function u397()
+    local _ScreenGui = Instance.new('ScreenGui')
+
+    _ScreenGui.Name = 'ExampleGui'
+    _ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild('PlayerGui')
+
+    local _ImageLabel = Instance.new('ImageLabel')
+
+    _ImageLabel.Name = 'ExampleImage'
+    _ImageLabel.Size = UDim2.new(0.03, 0, 0.03, 0)
+    _ImageLabel.Position = UDim2.new(0.5, 0, 0.4775, 0)
+    _ImageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+    _ImageLabel.Image = 'rbxassetid://1827745860'
+    _ImageLabel.BackgroundTransparency = 1
+    _ImageLabel.Visible = false
+    _ImageLabel.Parent = _ScreenGui
+end
+
+u397()
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    local _ExampleGui = game.Players.LocalPlayer.PlayerGui:FindFirstChild('ExampleGui')
+
+    if _ExampleGui then
+        _ExampleGui:Destroy()
+    end
+
+    u397()
+end)
+_FemboysHubMisc:CreateToggle({
+    Name = 'Crosshair',
+    CurrentValue = false,
+    Flag = 'Toggle1',
+    Callback = function(p399)
+        local _ExampleGui2 = game.Players.LocalPlayer.PlayerGui:FindFirstChild('ExampleGui')
+
+        if _ExampleGui2 then
+            _ExampleGui2 = game.Players.LocalPlayer.PlayerGui.ExampleGui:FindFirstChild('ExampleImage')
+        end
+        if _ExampleGui2 then
+            _ExampleGui2.Visible = p399
+        end
+    end,
+})
+_FemboysHubMisc:CreateSection('FemboyHub Chat')
+_FemboysHubMisc:CreateButton({
+    Name = 'Chat Spy',
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/LisSploit/FemboysHubChat/main/Spy'))()
+    end,
+})
+_FemboysHubMisc:CreateSection('FemboyHub Combat')
+_FemboysHubMisc:CreateButton({
+    Name = 'WallBang',
+    Callback = function()
+        game:service('Workspace'):FindFirstChild('Map'):FindFirstChild('Parts'):FindFirstChild('M_Parts').Parent = game:service('Workspace'):FindFirstChild('Characters')
+    end,
+})
+_FemboysHubMisc:CreateButton({
+    Name = 'Admin Protection (Auto leave when Staff joins the server)',
+    Callback = function()
+        local u401 = {
+            'tabootvcat',
+            'Revenantic',
+            'Saabor',
+            'MoIitor',
+            'IAmUnderAMask',
+            'SheriffGorji',
+            'xXFireyScorpionXx',
+            'LoChips',
+            'DeliverCreations',
+            'TDXiswinning',
+            'TZZV',
+            'FelixVenue',
+            'SIEGFRlED',
+            'ARRYvvv',
+            'z_papermoon',
+            'Malpheasance',
+            'ModHandIer',
+            'valphex',
+            'J_anday',
+            'tvdisko',
+            'yIlehs',
+            'DeliverCreations',
+            'COLOSSUSBUILTOFSTEEL',
+            'SeizedHolder',
+            'r3shape',
+            'RVVZ',
+            'adurize',
+            'codedcosmetics',
+            'QuantumCaterpillar',
+            'FractalHarmonics',
+            'GalacticSculptor',
+            'oTheSilver',
+            'Kretacaous',
+            'icarus_xs1goliath',
+            'GlamorousDradon',
+            'rainjeremy',
+            'parachuter2000',
+            'faintermercury',
+            'harht',
+            'Sansek1252',
+            'Snorpuwu',
+            'BenAzoten',
+            'Cand1ebox',
+            'KeenlyAware',
+            'mrzued',
+            'BruhmanVIII',
+            'Nystesia',
+            'fausties',
+            'zateopp',
+            'Iordnabi',
+            'ReviveTheDevil',
+            'jake_jpeg',
+            'UncrossedMeat3888',
+            'realpenyy',
+            'karateeeh',
+            'JayyMlg',
+            'Lo_Chips',
+            'Avelosky',
+            'king_ab09',
+            'TigerLe123',
+            'Dalvanuis',
+            'MoIitor',
+            'FelixVenue',
+            'iSonMillions',
+        }
+
+        for v402 = 1, #u401 do
+            local v403 = v402
+
+            u401[v403] = string.lower(u401[v403])
+        end
+
+        local function u405(p404)
+            if table.find(u401, string.lower(p404.Name)) then
+                game.Players.LocalPlayer:Kick('Stinky Staff joined the server - Femboyshub')
+            end
+        end
+        local function v410()
+            local v406, v407, v408 = ipairs(game.Players:GetPlayers())
+
+            while true do
+                local v409
+
+                v408, v409 = v406(v407, v408)
+
+                if v408 == nil then
+                    break
+                end
+
+                u405(v409)
+            end
+        end
+
+        game.Players.PlayerAdded:Connect(u405)
+        v410()
+    end,
+})
+_FemboysHubMisc:CreateButton({
+    Name = 'RPG-7 rocket control',
+    Callback = function()
+        local _Players4 = game:GetService('Players')
+        local _UserInputService2 = game:GetService('UserInputService')
+        local _RunService5 = game:GetService('RunService')
+        local _TweenService = game:GetService('TweenService')
+        local _CurrentCamera3 = workspace.CurrentCamera
+        local _Debris = workspace.Debris
+        local _VParts = _Debris.VParts
+        local _LocalPlayer8 = _Players4.LocalPlayer
+        local v419 = _LocalPlayer8
+
+        _LocalPlayer8.GetMouse(v419)
+
+        local u420 = 0
+        local u421 = 0
+        local u422 = 300
+        local u423 = false
+
+        _VParts.ChildAdded:Connect(function(p424)
+            if _Players4.LocalPlayer.Character:FindFirstChild('RPG-7') then
+                task.wait()
+
+                if p424.Name == 'RPG_Rocket' then
+                    _CurrentCamera3.CameraSubject = p424
+                    _LocalPlayer8.Character.HumanoidRootPart.Anchored = true
+
+                    pcall(function()
+                        p424.BodyForce:Destroy()
+                        p424.RotPart.BodyAngularVelocity:Destroy()
+                        p424.Sound:Destroy()
+                    end)
+
+                    local _BodyVelocity = Instance.new('BodyVelocity', p424)
+
+                    _BodyVelocity.MaxForce = Vector3.new(1000000000, 1000000000, 1000000000)
+                    _BodyVelocity.Velocity = Vector3.new()
+
+                    local _BodyGyro = Instance.new('BodyGyro', p424)
+
+                    _BodyGyro.P = 90000
+                    _BodyGyro.MaxTorque = Vector3.new(1000000000, 1000000000, 1000000000)
+
+                    task.spawn(function()
+                        repeat
+                            _RunService5.RenderStepped:Wait()
+                            _TweenService:Create(_BodyVelocity, TweenInfo.new(0.2), {
+                                Velocity = (_CurrentCamera3.CFrame.LookVector * u420 + _CurrentCamera3.CFrame.RightVector * u421) * u422,
+                            }):Play()
+
+                            _BodyGyro.CFrame = _CurrentCamera3.CoordinateFrame
+                            workspace.CurrentCamera.CFrame = p424.CFrame * CFrame.new(Vector3.new(0, 1, 1))
+                        until u423
+
+                        u423 = false
+                        _CurrentCamera3.CameraSubject = _LocalPlayer8.Character.Humanoid
+                        _LocalPlayer8.Character.HumanoidRootPart.Anchored = false
+                    end)
+                    _UserInputService2.InputBegan:Connect(function(p427)
+                        if p427.KeyCode ~= Enum.KeyCode.W then
+                            if p427.KeyCode ~= Enum.KeyCode.S then
+                                if p427.KeyCode ~= Enum.KeyCode.D then
+                                    if p427.KeyCode == Enum.KeyCode.A then
+                                        u421 = -1
+                                    end
+                                else
+                                    u421 = 1
+                                end
+                            else
+                                u420 = -1
+                            end
+                        else
+                            u420 = 1
+                        end
+                    end)
+                    _UserInputService2.InputEnded:Connect(function(p428)
+                        if p428.KeyCode == Enum.KeyCode.W or p428.KeyCode == Enum.KeyCode.S then
+                            u420 = 0
+                        elseif p428.KeyCode == Enum.KeyCode.D or p428.KeyCode == Enum.KeyCode.A then
+                            u421 = 0
+                        end
+                    end)
+                end
+            end
+        end)
+        _Debris.ChildAdded:Connect(function(p429)
+            task.wait()
+            pcall(function()
+                u423 = p429.Name == 'RPG_Explosion_Long' or p429.Name == 'RPG_Explosion_Short'
+            end)
+        end)
+    end,
+})
+
+local u430 = 'Head'
+local u431 = 30
+local u432 = false
+
+_FemboysHubMisc:CreateToggle({
+    Name = 'Melee aura',
+    CurrentValue = false,
+    Flag = '',
+    Callback = function(p433)
+        u432 = p433
+
+        local function u446()
+            local _Players5 = game:GetService('Players')
+            local _LocalPlayer9 = _Players5.LocalPlayer
+            local _Character4 = _LocalPlayer9.Character
+            local v437
+
+            if _Character4 then
+                v437 = _Character4:FindFirstChild(u430)
+            else
+                v437 = _Character4
+            end
+            if _Character4 or HumanoidRootPart then
+                local _huge4 = math.huge
+                local v439, v440, v441 = pairs(_Players5:GetPlayers())
+                local v442 = nil
+
+                while true do
+                    local v443
+
+                    v441, v443 = v439(v440, v441)
+
+                    if v441 == nil then
+                        break
+                    end
+                    if v443 ~= _LocalPlayer9 and v443.Character and v443.Character:FindFirstChild(u430) then
+                        local v444 = v443.Character:FindFirstChild(u430)
+                        local _magnitude6 = (v437.Position - v444.Position).magnitude
+
+                        if _magnitude6 < _huge4 then
+                            v442 = v443
+                            _huge4 = _magnitude6
+                        end
+                    end
+                end
+
+                if _huge4 > u431 then
+                    return nil
+                else
+                    return v442
+                end
+            else
+                return
+            end
+        end
+
+        if p433 then
+            meleeaurarunservice = game:GetService('RunService').RenderStepped:Connect(function()
+                if u432 and p433 then
+                    local v447, v448, v449 = pairs(game:GetService('Players').LocalPlayer.Character:GetChildren())
+
+                    while true do
+                        local v450
+
+                        v449, v450 = v447(v448, v449)
+
+                        if v449 == nil then
+                            break
+                        end
+                        if v450 and v450:IsA('Tool') then
+                            if v450.Name == 'Fists' then
+                                local v451, v452, v453 = pairs(game:GetService('Players').LocalPlayer.Character:GetChildren())
+
+                                while true do
+                                    local v454
+
+                                    v453, v454 = v451(v452, v453)
+
+                                    if v453 == nil then
+                                        break
+                                    end
+                                    if v454 and (v454.Name == 'Left Arm' or v454.Name == 'Right Arm') and v454 then
+                                        local v455 = u446()
+
+                                        if v455 and v455.Character and v455.Character:FindFirstChild('Humanoid') and (v455.Character:FindFirstChild(u430) and (v455.Character:FindFirstChild('Humanoid').Health > 0 and v454)) then
+                                            local v456, v457, v458 = pairs(v454:GetChildren())
+
+                                            while true do
+                                                local v459
+
+                                                v458, v459 = v456(v457, v458)
+
+                                                if v458 == nil then
+                                                    break
+                                                end
+                                                if v459 and v459.Name == 'DmgPoint' then
+                                                    local v460 = v455.Character:FindFirstChild(u430)
+
+                                                    v459.CFrame = CFrame.new(0, 0, 0)
+
+                                                    local v461 = v460.Position.X + math.random(-v460.Size.X, v460.Size.X) / 10
+                                                    local v462 = v460.Position.Y + math.random(-v460.Size.Y, v460.Size.Y) / 10
+                                                    local v463 = v460.Position.Z + math.random(-v460.Size.Z, v460.Size.Z) / 10
+
+                                                    v459.WorldCFrame = CFrame.new(v461, v462, v463) * CFrame.new(0, 0.5, 0)
+                                                end
+                                            end
+                                        end
+                                    end
+                                end
+                            elseif v450.Name == 'Sledgehammer' then
+                                if v450:FindFirstChild('Handle') and (v450:FindFirstChild('Handle'):FindFirstChild('Swing1') or v450:FindFirstChild('Handle'):FindFirstChild('Swing2')) then
+                                    local v464 = u446()
+
+                                    if v464 and v464.Character and v464.Character:FindFirstChild('Humanoid') and (v464.Character:FindFirstChild(u430) and v464.Character:FindFirstChild('Humanoid').Health > 0) then
+                                        local v465, v466, v467 = pairs(v450.Handle:GetChildren())
+
+                                        while true do
+                                            local v468
+
+                                            v467, v468 = v465(v466, v467)
+
+                                            if v467 == nil then
+                                                break
+                                            end
+                                            if v468 and v468.Name == 'DmgPoint' then
+                                                local v469 = v464.Character:FindFirstChild(u430)
+
+                                                v468.CFrame = CFrame.new(0, 0, 0)
+
+                                                local v470 = v469.Position.X + math.random(-v469.Size.X, v469.Size.X) / 10
+                                                local v471 = v469.Position.Y + math.random(-v469.Size.Y, v469.Size.Y) / 10
+                                                local v472 = v469.Position.Z + math.random(-v469.Size.Z, v469.Size.Z) / 10
+
+                                                v468.WorldCFrame = CFrame.new(v470, v471, v472) * CFrame.new(0, 0.4, 0)
+                                            end
+                                        end
+                                    end
+                                end
+                            elseif v450:FindFirstChild('WeaponHandle') and (v450:FindFirstChild('WeaponHandle'):FindFirstChild('Swing1') or v450:FindFirstChild('WeaponHandle'):FindFirstChild('Swing2')) then
+                                local v473 = u446()
+
+                                if v473 and v473.Character and v473.Character:FindFirstChild('Humanoid') and (v473.Character:FindFirstChild(u430) and v473.Character:FindFirstChild('Humanoid').Health > 0) then
+                                    local v474, v475, v476 = pairs(v450.WeaponHandle:GetChildren())
+
+                                    while true do
+                                        local v477
+
+                                        v476, v477 = v474(v475, v476)
+
+                                        if v476 == nil then
+                                            break
+                                        end
+                                        if v477 and v477.Name == 'DmgPoint' then
+                                            local v478 = v473.Character:FindFirstChild(u430)
+
+                                            v477.CFrame = CFrame.new(0, 0, 0)
+
+                                            local v479 = v478.Position.X + math.random(-v478.Size.X, v478.Size.X) / 10
+                                            local v480 = v478.Position.Y + math.random(-v478.Size.Y, v478.Size.Y) / 10
+                                            local v481 = v478.Position.Z + math.random(-v478.Size.Z, v478.Size.Z) / 10
+
+                                            v477.WorldCFrame = CFrame.new(v479, v480, v481) * CFrame.new(0, 0.54, 0)
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                elseif meleeaurarunservice then
+                    meleeaurarunservice:Disconnect()
+                end
+            end)
+        elseif not (p433 or u432) and meleeaurarunservice then
+            meleeaurarunservice:Disconnect()
+        end
+    end,
+})
+_FemboysHubMisc:CreateButton({
+    Name = 'Fling',
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/sauga77kjk/RobloxExploitRepository/main/TouchFLING'))()
+    end,
+})
+
+local function u492(p482)
+    local v483, v484, v485 = ipairs(p482:GetDescendants())
+    local v486 = {}
+
+    while true do
+        local v487
+
+        v485, v487 = v483(v484, v485)
+
+        if v485 == nil then
+            break
+        end
+        if v487:IsA('BasePart') then
+            if not v486[v487] then
+                v486[v487] = v487.Material
+            end
+
+            v487.Transparency = 0.5
+            v487.Material = Enum.Material.SmoothPlastic
+            v487.CanCollide = false
+
+            if v487.Name == 'DFrame' then
+                v487.Transparency = 1
+                v487.CanCollide = false
+            end
+        end
+    end
+
+    local v488, v489, v490 = pairs(v486)
+
+    while true do
+        local v491
+
+        v490, v491 = v488(v489, v490)
+
+        if v490 == nil then
+            break
+        end
+        if v490 and v490:IsA('BasePart') then
+            v490.Material = v491
+        end
+    end
+end
+local function u494(p493)
+    if p493:IsA('Model') then
+        u492(p493)
+    end
+end
+
+_FemboysHubMisc:CreateButton({
+    Name = 'Anti Doors',
+    Callback = function()
+        local _Doors = game.Workspace.Map:FindFirstChild('Doors')
+
+        if _Doors then
+            local v496, v497, v498 = ipairs(_Doors:GetChildren())
+
+            while true do
+                local v499
+
+                v498, v499 = v496(v497, v498)
+
+                if v498 == nil then
+                    break
+                end
+                if v499:IsA('Model') then
+                    u492(v499)
+                end
+            end
+
+            _Doors.ChildAdded:Connect(u494)
+            print('Existing and new doors will now be semi-transparent, non-collidable, and DFrame parts will be invisible.')
+        else
+            print('No Doors folder found in Map.')
+        end
+    end,
+})
+_FemboysHubMisc:CreateButton({
+    Name = 'Remove BarbedWire',
+    Callback = function()
+        local _F_Parts = game.Workspace.Filter.Parts.F_Parts
+
+        if _F_Parts and _F_Parts:IsA('Folder') then
+            local v501, v502, v503 = ipairs(_F_Parts:GetChildren())
+
+            while true do
+                local v504
+
+                v503, v504 = v501(v502, v503)
+
+                if v503 == nil then
+                    break
+                end
+                if v504:IsA('Folder') then
+                    v504:Destroy()
+                end
+            end
+
+            print('Folders in F_Parts have been deleted.')
+        else
+            warn('F_Parts folder does not exist or is not a folder.')
+        end
+    end,
+})
+
+local _FemboysHubTeleports = v2:CreateTab('FemboysHub Teleports', nil)
+
+_FemboysHubTeleports:CreateSection('Main Teleports')
+_FemboysHubTeleports:CreateButton({
+    Name = 'Tower',
+    Callback = function()
+        local _LocalPlayer10 = game.Players.LocalPlayer
+        local v507 = _LocalPlayer10.Character or _LocalPlayer10.CharacterAdded:Wait()
+        local v508 = CFrame.new(-4513.34766, 149.349609, -879.456604, -0.0525398403, 8.26210389e-9, -0.998618841, -1.2783125700000002e-7, 1, 1.49990527e-8, 0.998618841, 1.28442736e-7, -0.0525398403)
+        local v509 = v508 + Vector3.new(0, 2, 0)
+        local _Position2 = v508.Position
+        local _Magnitude = (v509.Position - _Position2).Magnitude
+        local v512 = _Magnitude > 500 and 9 or (150 < _Magnitude and 7 or 5)
+        local v513 = 0.01
+        local _PrimaryPart = v507.PrimaryPart
+
+        if _PrimaryPart then
+            local v515 = tick()
+
+            while tick() - v515 < v512 do
+                _PrimaryPart.CFrame = v509
+
+                wait(v513)
+            end
+        else
+            warn('PrimaryPart not set for character')
+        end
+    end,
+})
+_FemboysHubTeleports:CreateButton({
+    Name = 'Motel',
+    Callback = function()
+        local _LocalPlayer11 = game.Players.LocalPlayer
+        local v517 = _LocalPlayer11.Character or _LocalPlayer11.CharacterAdded:Wait()
+        local v518 = CFrame.new(-4671.03076, 3.29673862, -905.132507, 0.00827909447, 2.12039741e-9, -0.999965727, 6.931458780000001e-8, 1, 2.69435185e-9, 0.999965727, -6.93345186e-8, 0.00827909447)
+        local v519 = v518 + Vector3.new(0, 2, 0)
+        local _Position3 = v518.Position
+        local _Magnitude2 = (v519.Position - _Position3).Magnitude
+        local v522 = _Magnitude2 > 500 and 9 or (150 < _Magnitude2 and 7 or 5)
+        local v523 = 0.01
+        local _PrimaryPart2 = v517.PrimaryPart
+
+        if _PrimaryPart2 then
+            local v525 = tick()
+
+            while tick() - v525 < v522 do
+                _PrimaryPart2.CFrame = v519
+
+                wait(v523)
+            end
+        else
+            warn('PrimaryPart not set for character')
+        end
+    end,
+})
+_FemboysHubTeleports:CreateButton({
+    Name = 'Cafe',
+    Callback = function()
+        local _LocalPlayer12 = game.Players.LocalPlayer
+        local v527 = _LocalPlayer12.Character or _LocalPlayer12.CharacterAdded:Wait()
+        local v528 = CFrame.new(-4630.45752, 6.05001259, -269.560516, 0.0246613994, 4.06907468e-8, -0.999695837, 8.68120509e-8, 1, 4.2844686e-8, 0.999695837, -8.78422597e-8, 0.0246613994)
+        local v529 = v528 + Vector3.new(0, 2, 0)
+        local _Position4 = v528.Position
+        local _Magnitude3 = (v529.Position - _Position4).Magnitude
+        local v532 = _Magnitude3 > 500 and 9 or (150 < _Magnitude3 and 7 or 5)
+        local v533 = 0.01
+        local _PrimaryPart3 = v527.PrimaryPart
+
+        if _PrimaryPart3 then
+            local v535 = tick()
+
+            while tick() - v535 < v532 do
+                _PrimaryPart3.CFrame = v529
+
+                wait(v533)
+            end
+        else
+            warn('PrimaryPart not set for character')
+        end
+    end,
+})
+_FemboysHubTeleports:CreateButton({
+    Name = 'Illegal Pizza',
+    Callback = function()
+        local _LocalPlayer13 = game.Players.LocalPlayer
+        local v537 = _LocalPlayer13.Character or _LocalPlayer13.CharacterAdded:Wait()
+        local v538 = CFrame.new(-4419.31836, 5.19999504, -124.549927, 0.0327239819, -3.5039864300000003e-8, -0.999464452, 1.76940649e-8, 1, -3.44793101e-8, 0.999464452, -1.6556288799999999e-8, 0.0327239819)
+        local v539 = v538 + Vector3.new(0, 2, 0)
+        local _Position5 = v538.Position
+        local _Magnitude4 = (v539.Position - _Position5).Magnitude
+        local v542 = _Magnitude4 > 500 and 9 or (150 < _Magnitude4 and 7 or 5)
+        local v543 = 0.01
+        local _PrimaryPart4 = v537.PrimaryPart
+
+        if _PrimaryPart4 then
+            local v545 = tick()
+
+            while tick() - v545 < v542 do
+                _PrimaryPart4.CFrame = v539
+
+                wait(v543)
+            end
+        else
+            warn('PrimaryPart not set for character')
+        end
+    end,
+})
+_FemboysHubTeleports:CreateButton({
+    Name = 'JunkYard',
+    Callback = function()
+        local _LocalPlayer14 = game.Players.LocalPlayer
+        local v547 = _LocalPlayer14.Character or _LocalPlayer14.CharacterAdded:Wait()
+        local v548 = CFrame.new(-3919.51733, 3.79995584, -448.998413, 0.0113751534, 1.73916492e-9, -0.999935329, -9.92708848e-8, 1, 6.09982898e-10, 0.999935329, 9.92575195e-8, 0.0113751534)
+        local _Position6 = v547.PrimaryPart.Position
+        local _Magnitude5 = (v548.Position - _Position6).Magnitude
+        local v551 = _Magnitude5 > 500 and 9 or (150 < _Magnitude5 and 7 or 5)
+        local v552 = 0.01
+        local _PrimaryPart5 = v547.PrimaryPart
+
+        if _PrimaryPart5 then
+            local v554 = tick()
+
+            while tick() - v554 < v551 do
+                _PrimaryPart5.CFrame = v548
+
+                wait(v552)
+            end
+        else
+            warn('PrimaryPart not set for character')
+        end
+    end,
+})
+_FemboysHubTeleports:CreateButton({
+    Name = 'Sewer',
+    Callback = function()
+        local _LocalPlayer15 = game.Players.LocalPlayer
+        local v556 = _LocalPlayer15.Character or _LocalPlayer15.CharacterAdded:Wait()
+        local v557 = CFrame.new(-4658.19092, -69.365921, -871.911499, -0.0228894278, -7.16986825e-9, -0.999737978, -1.9528199099999999e-9, 1, -7.12703629e-9, 0.999737978, 1.78917448e-9, -0.0228894278)
+        local v558 = v557 + Vector3.new(0, 2, 0)
+        local _Position7 = v557.Position
+        local _Magnitude6 = (v558.Position - _Position7).Magnitude
+        local v561 = _Magnitude6 > 500 and 9 or (150 < _Magnitude6 and 7 or 5)
+        local v562 = 0.01
+        local _PrimaryPart6 = v556.PrimaryPart
+
+        if _PrimaryPart6 then
+            local v564 = tick()
+
+            while tick() - v564 < v561 do
+                _PrimaryPart6.CFrame = v558
+
+                wait(v562)
+            end
+        else
+            warn('PrimaryPart not set for character')
+        end
+    end,
+})
+_FemboysHubTeleports:CreateButton({
+    Name = 'Vibe Check down',
+    Callback = function()
+        local _LocalPlayer16 = game.Players.LocalPlayer
+        local v566 = _LocalPlayer16.Character or _LocalPlayer16.CharacterAdded:Wait()
+        local v567 = CFrame.new(-4780.96729, -200.964722, -895.44696, 0.999941528, 6.56086208e-9, 0.0108164698, -5.23050447e-9, 1, -1.23021962e-7, -0.0108164698, 1.22958184e-7, 0.999941528)
+        local v568 = v567 + Vector3.new(0, 2, 0)
+        local _Position8 = v567.Position
+        local _Magnitude7 = (v568.Position - _Position8).Magnitude
+        local v571 = _Magnitude7 > 500 and 9 or (150 < _Magnitude7 and 7 or 5)
+        local v572 = 0.01
+        local _PrimaryPart7 = v566.PrimaryPart
+
+        if _PrimaryPart7 then
+            local v574 = tick()
+
+            while tick() - v574 < v571 do
+                _PrimaryPart7.CFrame = v568
+
+                wait(v572)
+            end
+        else
+            warn('PrimaryPart not set for character')
+        end
+    end,
+})
+_FemboysHubTeleports:CreateButton({
+    Name = 'Vibe Check Up',
+    Callback = function()
+        local _LocalPlayer17 = game.Players.LocalPlayer
+        local v576 = _LocalPlayer17.Character or _LocalPlayer17.CharacterAdded:Wait()
+        local v577 = CFrame.new(-4776.97803, -34.7683716, -788.092468, 0.999498069, -5.97677996e-8, 0.0316800252, 6.05885475e-8, 1, -2.49475054e-8, -0.0316800252, 2.68544298e-8, 0.999498069)
+        local v578 = v577 + Vector3.new(0, 2, 0)
+        local _Position9 = v577.Position
+        local _Magnitude8 = (v578.Position - _Position9).Magnitude
+        local v581 = _Magnitude8 > 500 and 9 or (150 < _Magnitude8 and 7 or 5)
+        local v582 = 0.01
+        local _PrimaryPart8 = v576.PrimaryPart
+
+        if _PrimaryPart8 then
+            local v584 = tick()
+
+            while tick() - v584 < v581 do
+                _PrimaryPart8.CFrame = v578
+
+                wait(v582)
+            end
+        else
+            warn('PrimaryPart not set for character')
+        end
+    end,
+})
+_FemboysHubTeleports:CreateSection('Misc Teleports')
+
+local v587, u588, u589 = (function()
+    local _LocalPlayer18 = game.Players.LocalPlayer
+    local v586 = _LocalPlayer18.Character or _LocalPlayer18.CharacterAdded:Wait()
+
+    return _LocalPlayer18, v586, v586:WaitForChild('HumanoidRootPart')
+end)()
+
+v587.CharacterAdded:Connect(function(p590)
+    u588 = p590
+    u589 = u588:WaitForChild('HumanoidRootPart')
+end)
+
+local function u601()
+    local _VendingMachines = game.Workspace.Map:FindFirstChild('VendingMachines')
+    local v592 = nil
+    local _huge5 = math.huge
+
+    if _VendingMachines then
+        local v594, v595, v596 = pairs(_VendingMachines:GetChildren())
+
+        while true do
+            local v597
+
+            v596, v597 = v594(v595, v596)
+
+            if v596 == nil then
+                break
+            end
+
+            local _Parts = v597:FindFirstChild('Parts')
+
+            if _Parts then
+                local _ScreenMesh = _Parts:FindFirstChild('ScreenMesh')
+
+                if _ScreenMesh and _ScreenMesh:IsA('BasePart') then
+                    local _magnitude7 = (u589.Position - _ScreenMesh.Position).magnitude
+
+                    if _magnitude7 < _huge5 then
+                        _huge5 = _magnitude7
+                        v592 = _ScreenMesh
+                    end
+                end
+            end
+        end
+    end
+
+    return v592
+end
+local function u607()
+    local v602 = u601()
+
+    if v602 then
+        local v603 = (u589.Position - v602.Position).magnitude > 150 and 7 or 5
+        local v604 = tick()
+
+        while tick() - v604 < v603 do
+            local v605 = v602.CFrame.LookVector * 3
+            local v606 = v602.Position + v605
+
+            u589.CFrame = CFrame.new(v606, v602.Position)
+
+            wait(0.01)
+        end
+    else
+        warn('No ScreenMesh part found.')
+    end
+end
+
+_FemboysHubTeleports:CreateButton({
+    Name = 'Teleport to Nearest VendingMachine',
+    Callback = function()
+        u607()
+    end,
+})
+
+local _LocalPlayer19 = game.Players.LocalPlayer
+
+local function u609()
+    return _LocalPlayer19.Character or _LocalPlayer19.CharacterAdded:Wait()
+end
+
+local _Shopz = game.Workspace.Map.Shopz
+
+local function u621(p611)
+    local _huge6 = math.huge
+    local v613 = _Shopz
+    local v614, v615, v616 = ipairs(v613:GetChildren())
+    local v617 = nil
+
+    while true do
+        local v618
+
+        v616, v618 = v614(v615, v616)
+
+        if v616 == nil then
+            break
+        end
+        if v618:IsA('Model') and (v618.Name == 'ArmoryDealer' or v618.Name == 'Dealer') then
+            local _MainPart = v618:FindFirstChild('MainPart')
+
+            if _MainPart then
+                local _Magnitude9 = (p611.PrimaryPart.Position - _MainPart.Position).Magnitude
+
+                if _Magnitude9 < _huge6 then
+                    v617 = _MainPart
+                    _huge6 = _Magnitude9
+                end
+            end
+        end
+    end
+
+    return v617
+end
+local function u626()
+    local v622 = u609()
+    local v623 = u621(v622)
+
+    if v623 then
+        local v624 = v623.Position + v623.CFrame.LookVector * 3
+
+        v622:SetPrimaryPartCFrame(CFrame.new(v624, v623.Position))
+
+        local v625 = tick()
+
+        while tick() - v625 < 6 do
+            v622:SetPrimaryPartCFrame(CFrame.new(v624, v623.Position))
+            wait(0.01)
+        end
+    else
+        warn("No 'MainPart' found inside 'ArmoryDealer' or 'Dealer'.")
+    end
+end
+
+_FemboysHubTeleports:CreateButton({
+    Name = 'Teleport to Nearest Dealer',
+    Callback = function()
+        u626()
+    end,
+})
+_LocalPlayer19.CharacterAdded:Connect(function()
+    if not _LocalPlayer19.Character then
+        _LocalPlayer19.CharacterAdded:Wait()
+    end
+
+    u626()
+end)
+
+local v629, u630, u631 = (function()
+    local _LocalPlayer20 = game.Players.LocalPlayer
+    local v628 = _LocalPlayer20.Character or _LocalPlayer20.CharacterAdded:Wait()
+
+    return _LocalPlayer20, v628, v628:WaitForChild('HumanoidRootPart')
+end)()
+
+v629.CharacterAdded:Connect(function(p632)
+    u630 = p632
+    u631 = u630:WaitForChild('HumanoidRootPart')
+end)
+
+local _BredMakurz = game.Workspace.Map.BredMakurz
+local u634 = {
+    'SmallSafe_SW_11',
+    'SmallSafe_FA_34',
+    'SmallSafe_C_3',
+    'SmallSafe_HO_37',
+    'SmallSafe_SU_22',
+    'SmallSafe_SU_15',
+    'MediumSafe_VC_30',
+    'MediumSafe_T_45',
+    'SmallSafe_SW_26',
+    'MediumSafe_SU_32',
+    'MediumSafe_TS_20',
+    'MediumSafe_SEW_8',
+    'SmallSafe_TO_43',
+    'SmallSafe_FA_36',
+    'MediumSafe_HO_24',
+    'SmallSafe_TO_42',
+    'SmallSafe_BD_18',
+    'MediumSafe_HO_39',
+    'MediumSafe_VC_21',
+    'MediumSafe_SEW_2',
+    'SmallSafe_M_17',
+    'SmallSafe_BD_12',
+    'SmallSafe_WH_28',
+    'MediumSafe_HO_41',
+    'MediumSafe_T_46',
+    'SmallSafe_FA_35',
+    'MediumSafe_VC_38',
+    'MediumSafe_SW_9',
+    'MediumSafe_TS_20',
+    'SmallSafe_TO_44',
+    'Register_TS_27',
+    'Register_BS_47',
+    'Register_C_1',
+    'Register_TS_4',
+    'Register_B_10',
+    'Register_HO_23',
+    'Register_M_31',
+    'Register_B_40',
+    'Register_GS_16',
+    'Register_M_25',
+    'Register_P_13',
+    'Register_P_14',
+    'Register_VI_29',
+    'Register_B_7',
+    'Register_M_6',
+    'Register_M_5',
+    'Register_B_19',
+    'Register_B_33',
+}
+
+local function u646()
+    local _huge7 = math.huge
+    local v636 = _BredMakurz
+    local v637, v638, v639 = pairs(v636:GetDescendants())
+    local v640 = nil
+
+    while true do
+        local v641
+
+        v639, v641 = v637(v638, v639)
+
+        if v639 == nil then
+            break
+        end
+        if v641:IsA('Model') and table.find(u634, v641.Name) then
+            local _MainPart2 = v641:FindFirstChild('MainPart')
+            local _Values = v641:FindFirstChild('Values')
+
+            if _MainPart2 and _MainPart2:IsA('BasePart') and _Values then
+                local _Broken = _Values:FindFirstChild('Broken')
+
+                if _Broken and _Broken:IsA('BoolValue') and not _Broken.Value then
+                    local _magnitude8 = (u631.Position - _MainPart2.Position).magnitude
+
+                    if _magnitude8 < _huge7 then
+                        v640 = _MainPart2
+                        _huge7 = _magnitude8
+                    end
+                end
+            end
+        end
+    end
+
+    return v640
+end
+local function u652()
+    local v647 = u646()
+
+    if v647 then
+        local v648 = (u631.Position - v647.Position).magnitude > 150 and 7 or 5
+        local v649 = tick()
+
+        while tick() - v649 < v648 do
+            local v650 = v647.CFrame.LookVector * 3
+            local v651 = v647.Position + v650
+
+            u631.CFrame = CFrame.new(v651, v647.Position)
+
+            wait(0.01)
+        end
+    else
+        warn('No usable safe found or all are broken.')
+    end
+end
+
+_FemboysHubTeleports:CreateButton({
+    Name = 'Teleport to Nearest Safe/Register',
+    Callback = function()
+        u652()
+    end,
+})
+
+local function u672()
+    local _Players6 = game:GetService('Players')
+    local _Workspace = game:GetService('Workspace')
+    local _LocalPlayer21 = _Players6.LocalPlayer
+    local _HumanoidRootPart8 = (_LocalPlayer21.Character or _LocalPlayer21.CharacterAdded:Wait()):WaitForChild('HumanoidRootPart')
+    local _Main = _Workspace:WaitForChild('Map'):WaitForChild('ATMz'):WaitForChild('ATM'):WaitForChild('Parts'):WaitForChild('Main')
+    local v666 = (function()
+        local _huge8 = math.huge
+        local v659 = _Main
+        local v660, v661, v662 = ipairs(v659:GetChildren())
+        local v663 = nil
+
+        while true do
+            local v664
+
+            v662, v664 = v660(v661, v662)
+
+            if v662 == nil then
+                break
+            end
+            if v664:IsA('BasePart') and v664.Name == 'atm' then
+                local _Magnitude10 = (_HumanoidRootPart8.Position - v664.Position).Magnitude
+
+                if _Magnitude10 < _huge8 then
+                    v663 = v664
+                    _huge8 = _Magnitude10
+                end
+            end
+        end
+
+        return v663
+    end)()
+
+    if v666 then
+        local _CFrame = v666.CFrame
+        local v668 = _CFrame.Position + _CFrame.LookVector * -3
+
+        print('ATM Position:', _CFrame.Position)
+        print('LookVector:', _CFrame.LookVector)
+        print('New Position:', v668)
+
+        local v669 = (v668 - _HumanoidRootPart8.Position).Magnitude > 200 and 7 or 5
+
+        _HumanoidRootPart8.CFrame = CFrame.new(v668, _CFrame.Position)
+
+        local v670 = tick()
+        local v671 = _HumanoidRootPart8
+
+        while tick() - v670 < v669 do
+            v671.CFrame = CFrame.new(v668, _CFrame.Position)
+
+            wait(0.1)
+        end
+    else
+        warn("No 'atm' found inside 'Main'.")
+    end
+end
+
+local u673 = 30
+local u674 = false
+
+_FemboysHubTeleports:CreateButton({
+    Name = 'Teleport to ATM',
+    Callback = function()
+        if not u674 then
+            u672()
+
+            u674 = true
+
+            local u675 = tick() + u673
+
+            spawn(function()
+                while tick() < u675 do
+                    wait(1)
+                end
+
+                u674 = false
+            end)
+        end
+    end,
+})
+_FemboysHubTeleports:CreateSection('Temporary Teleports')
+
+local _LocalPlayer22 = game.Players.LocalPlayer
+
+local function u677()
+    return _LocalPlayer22.Character or _LocalPlayer22.CharacterAdded:Wait()
+end
+
+local _Shopz2 = game.Workspace.Map.Shopz
+
+local function u684(_)
+    local v679 = _Shopz2
+    local v680, v681, v682 = ipairs(v679:GetChildren())
+
+    while true do
+        local v683
+
+        v682, v683 = v680(v681, v682)
+
+        if v682 == nil then
+            break
+        end
+        if v683:IsA('Model') and v683.Name == 'RebelDealer' then
+            return v683:FindFirstChild('MainPart')
+        end
+    end
+
+    return nil
+end
+local function u693()
+    local v685 = u677()
+    local v686 = u684(v685)
+
+    if v686 then
+        local v687 = v686.Position + v686.CFrame.LookVector * 3
+
+        v685:SetPrimaryPartCFrame(CFrame.new(v687, v686.Position))
+
+        local v688 = tick()
+
+        while tick() - v688 < 4 do
+            v685:SetPrimaryPartCFrame(CFrame.new(v687, v686.Position))
+            wait(0.01)
+        end
+    else
+        local v689 = u1
+        local _Notify = v689.Notify
+        local v691 = {
+            Title = 'RebelDealer Not Found',
+            Content = "No 'RebelDealer' found inside 'shopz'.",
+            Duration = 6.5,
+            Image = 4483362458,
+        }
+        local v692 = {
+            Ignore = {
+                Name = 'Okay!',
+                Callback = function()
+                    print('The user tapped Okay!')
+                end,
+            },
+        }
+
+        v691.Actions = v692
+
+        _Notify(v689, v691)
+    end
+end
+
+_FemboysHubTeleports:CreateButton({
+    Name = 'Teleport to RebelDealer',
+    Callback = function()
+        u693()
+    end,
+})
+_LocalPlayer22.CharacterAdded:Connect(function()
+    if not _LocalPlayer22.Character then
+        _LocalPlayer22.CharacterAdded:Wait()
+    end
+
+    u693()
+end)
+
+local _LocalPlayer23 = game.Players.LocalPlayer
+
+local function u695()
+    return _LocalPlayer23.Character or _LocalPlayer23.CharacterAdded:Wait()
+end
+
+local _MysteryBox = game.Workspace.Map.MysteryBoxes:FindFirstChild('MysteryBox')
+
+local function u697(_)
+    if _MysteryBox then
+        return _MysteryBox:FindFirstChild('MainPart')
+    else
+        return nil
+    end
+end
+local function u706()
+    local v698 = u695()
+    local v699 = u697(v698)
+
+    if v699 then
+        local v700 = v699.Position + v699.CFrame.LookVector * 3
+
+        v698:SetPrimaryPartCFrame(CFrame.new(v700, v699.Position))
+
+        local v701 = tick()
+
+        while tick() - v701 < 4 do
+            v698:SetPrimaryPartCFrame(CFrame.new(v700, v699.Position))
+            wait(0.01)
+        end
+    else
+        local v702 = u1
+        local _Notify2 = v702.Notify
+        local v704 = {
+            Title = 'MysteryBox Not Found',
+            Content = "No 'MysteryBox' found inside 'MysteryBoxes'.",
+            Duration = 6.5,
+            Image = 4483362458,
+        }
+        local v705 = {
+            Ignore = {
+                Name = 'Okay!',
+                Callback = function()
+                    print('The user tapped Okay!')
+                end,
+            },
+        }
+
+        v704.Actions = v705
+
+        _Notify2(v702, v704)
+    end
+end
+
+_FemboysHubTeleports:CreateButton({
+    Name = 'Teleport to MysteryBox',
+    Callback = function()
+        u706()
+    end,
+})
+_LocalPlayer23.CharacterAdded:Connect(function()
+    if not _LocalPlayer23.Character then
+        _LocalPlayer23.CharacterAdded:Wait()
+    end
+
+    u706()
+end)
+
+local _LocalPlayer24 = game.Players.LocalPlayer
+
+local function u708()
+    return _LocalPlayer24.Character or _LocalPlayer24.CharacterAdded:Wait()
+end
+local function u723()
+    local _SpawnedBread = game.Workspace.Filter.SpawnedBread
+    local _Position10 = u708().HumanoidRootPart.Position
+    local v711, v712, v713 = pairs(_SpawnedBread:GetChildren())
+    local v714 = {}
+
+    while true do
+        local v715
+
+        v713, v715 = v711(v712, v713)
+
+        if v713 == nil then
+            break
+        end
+        if v715:IsA('MeshPart') then
+            table.insert(v714, v715)
+        end
+    end
+
+    if #v714 <= 0 then
+        return nil
+    end
+
+    local _huge9 = math.huge
+    local v717, v718, v719 = pairs(v714)
+    local v720 = nil
+
+    while true do
+        local v721
+
+        v719, v721 = v717(v718, v719)
+
+        if v719 == nil then
+            break
+        end
+
+        local _magnitude9 = (v721.Position - _Position10).magnitude
+
+        if _magnitude9 < _huge9 then
+            v720 = v721
+            _huge9 = _magnitude9
+        end
+    end
+
+    return v720
+end
+local function u732()
+    local v724 = u708()
+    local v725 = u723()
+
+    if v725 then
+        local v726 = v725.Position + v725.CFrame.LookVector * 5 + Vector3.new(0, 5, 0)
+
+        v724:SetPrimaryPartCFrame(CFrame.new(v726, v726 + v725.CFrame.LookVector))
+
+        local v727 = tick()
+
+        while tick() - v727 < 5 do
+            v724:SetPrimaryPartCFrame(CFrame.new(v726, v726 + v725.CFrame.LookVector))
+            wait(0.01)
+        end
+    else
+        local v728 = u1
+        local _Notify3 = v728.Notify
+        local v730 = {
+            Title = 'No Cash Found',
+            Content = 'No Cash found in game.',
+            Duration = 6.5,
+            Image = 4483362458,
+        }
+        local v731 = {
+            Ignore = {
+                Name = 'Okay!',
+                Callback = function()
+                    print('The user tapped Okay!')
+                end,
+            },
+        }
+
+        v730.Actions = v731
+
+        _Notify3(v728, v730)
+    end
+end
+
+_FemboysHubTeleports:CreateButton({
+    Name = 'Spawn to dropped Cash',
+    Callback = function()
+        u732()
+    end,
+})
+_LocalPlayer24.CharacterAdded:Connect(function()
+    if not _LocalPlayer24.Character then
+        _LocalPlayer24.CharacterAdded:Wait()
+    end
+
+    u732()
+end)
+
+local _Boost = v2:CreateTab('Boost', nil)
+
+_Boost:CreateSection('Thanks so much for boosting')
+_Boost:CreateSection('Booster stuff')
+_Boost:CreateButton({
+    Name = 'Click Teleport (Q)',
+    Callback = function()
+        plr = game.Players.LocalPlayer
+        hum = plr.Character.HumanoidRootPart
+        mouse = plr:GetMouse()
+
+        mouse.KeyDown:connect(function(p734)
+            if p734 == 'q' and mouse.Target then
+                hum.CFrame = CFrame.new(mouse.Hit.x, mouse.Hit.y + 5, mouse.Hit.z)
+            end
+        end)
+    end,
+})
+_Boost:CreateButton({
+    Name = 'Fullbright',
+    Callback = function()
+        pcall(function()
+            local _Lighting = game:GetService('Lighting')
+
+            _Lighting.Ambient = Color3.fromRGB(255, 255, 255)
+            _Lighting.Brightness = 1
+            _Lighting.FogEnd = 10000000000
+
+            local v736, v737, v738 = pairs(_Lighting:GetDescendants())
+
+            while true do
+                local v739
+
+                v738, v739 = v736(v737, v738)
+
+                if v738 == nil then
+                    break
+                end
+                if v739:IsA('BloomEffect') or v739:IsA('BlurEffect') or (v739:IsA('ColorCorrectionEffect') or v739:IsA('SunRaysEffect')) then
+                    v739.Enabled = false
+                end
+            end
+
+            _Lighting.Changed:Connect(function()
+                _Lighting.Ambient = Color3.fromRGB(255, 255, 255)
+                _Lighting.Brightness = 1
+                _Lighting.FogEnd = 10000000000
+            end)
+            spawn(function()
+                local _Character5 = game:GetService('Players').LocalPlayer.Character
+
+                while wait() do
+                    repeat
+                        wait()
+                    until _Character5 ~= nil
+
+                    if not _Character5.HumanoidRootPart:FindFirstChildWhichIsA('PointLight') then
+                        local _PointLight = Instance.new('PointLight', _Character5.HumanoidRootPart)
+
+                        _PointLight.Brightness = 1
+                        _PointLight.Range = 60
+                    end
+                end
+            end)
+        end)
+    end,
+})
+_Boost:CreateButton({
+    Name = 'Auto Lockpick',
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Iceyze/crim-autolockpick/main/main.lua'))()
+    end,
+})
+_Boost:CreateButton({
+    Name = 'AFK ATM Farm (Closes current UI)',
+    Callback = function()
+        loadstring(game:HttpGet('https://pastebin.com/raw/ZBSqZcrm'))()
+    end,
+})
