@@ -135,6 +135,7 @@ local function addAssumedAdministratorRules()
     adminUserIds[727189337] = true
     adminUserIds[1871290386] = true
     adminUserIds[608073286] = true
+    AdminUserIds[7282924783] = true
     addAdministratorRole(4165692, "Tester")
     addAdministratorRole(4165692, "Contributor")
     addAdministratorRole(4165692, "Tester+")
